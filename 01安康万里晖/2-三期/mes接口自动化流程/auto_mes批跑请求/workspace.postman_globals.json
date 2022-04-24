@@ -1,0 +1,147 @@
+{
+	"id": "db9f16b4-a611-43da-8900-34169b671f38",
+	"values": [
+		{
+			"key": "SystemId",
+			"value": "all.akcome",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "ticket",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "ipport",
+			"value": "http://192.168.1.127:9997",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "ipport_gk",
+			"value": "192.168.70.88:9084",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "ipport1",
+			"value": "192.168.1.150:9084",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "ipport_wyy",
+			"value": "192.168.70.134:9084",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "1",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "whole_code",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "msg",
+			"value": "成功",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "success",
+			"value": "true",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "ipport_mes",
+			"value": "192.168.70.134:9084",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "woCode",
+			"value": "WO202202280001",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "wafer_no1",
+			"value": "2015363111",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "wafer_no2",
+			"value": "2015887399",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "cas_1",
+			"value": "HL-s355",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "cas_2",
+			"value": "HL-s356",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "cas_3",
+			"value": "HL-s357",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "try_1",
+			"value": "TP012",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "try_2",
+			"value": "TP013",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "try_3",
+			"value": "TP014",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "wafer_patch_1",
+			"value": "4162846777",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "wafer_patch_2",
+			"value": "4162846774",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "wafer_patch_3",
+			"value": "4162846775",
+			"type": "default",
+			"enabled": true
+		}
+	],
+	"name": "Globals",
+	"_postman_variable_scope": "globals",
+	"_postman_exported_at": "2022-03-31T01:24:42.797Z",
+	"_postman_exported_using": "Postman/9.15.8"
+}

@@ -1,0 +1,16 @@
+action view：
+AssyLoading1CheckIn
+AssyLoading1CheckOut
+
+	
+HL-2-333  丝网印刷
+
+
+HL-2-311  PVD
+
+
+bc004卡控次数
+
+HL-2-388  新产品导入时卡控工艺
+
+HL-2-366  PVD到丝网印刷

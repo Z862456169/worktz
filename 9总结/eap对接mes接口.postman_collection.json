@@ -1,0 +1,137 @@
+{
+	"info": {
+		"_postman_id": "75f58abd-eb5a-4931-8401-85750eeef94b",
+		"name": "eap对接mes接口",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "wafer检测信息AOI",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"procId\":\"SPT\",\r\n    \"eqpCode\":\"swys001\",\r\n    \"waferDecimalCode\":\"270532702\",\r\n    \"portCode\":\"1\",\r\n    \"measurerId\":\"SMZtest\",\r\n    \"direction\":\"1\",\r\n    \"rank\":\"A\",\r\n    \"defectCode\":\"sd\",\r\n    \"fileUrl\":\"http://www.baidu.com\",\r\n    \"time\":\"20220311213010\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipporttest}}/cut/wafer/checkForAOI",
+					"host": [
+						"{{ipporttest}}"
+					],
+					"path": [
+						"cut",
+						"wafer",
+						"checkForAOI"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "获取料盒 WaferID",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{ticket}}",
+						"type": "default",
+						"disabled": true
+					},
+					{
+						"key": "SystemId",
+						"value": "{{SystemId}}",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"eqpCode\": \"切片机001\",\r\n    \"carrierSn\": \"LH322\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipport1}}/cut/wafer/getWaferIdList",
+					"host": [
+						"{{ipport1}}"
+					],
+					"path": [
+						"cut",
+						"wafer",
+						"getWaferIdList"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Wafer 信息登记，操作表：MC_CUT_EAP_WAFER_INFO",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"eqpCode\":\"swys001\",\r\n    \"waferDecimalCode\":\"272105567\",\r\n    \"chamberCode\":\"11\",\r\n    \"type\":\"out\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipporttest}}/cut/wafer/info",
+					"host": [
+						"{{ipporttest}}"
+					],
+					"path": [
+						"cut",
+						"wafer",
+						"info"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "上料 cassette 需要拿走接口，操作表：MC_CARRIER_WAFER",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"carrierSn\":\"HL266\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipport1}}/track/cassette/release",
+					"host": [
+						"{{ipport1}}"
+					],
+					"path": [
+						"track",
+						"cassette",
+						"release"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

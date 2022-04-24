@@ -1,0 +1,2965 @@
+{
+	"info": {
+		"_postman_id": "3da0d7f9-77c6-431e-bdf2-67ff9eafafbb",
+		"name": "mes_auto_patch_4STP",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1.1切片-获取料盒 WaferID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var result = JSON.parse(responseBody);\r",
+							"var s = result.msg\r",
+							"var z = pm.globals.get(\"msg\");\r",
+							"pm.test(\"响应成功\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(z);\r",
+							"});\r",
+							"whole_code = result.data[0].waferDecimalCode\r",
+							"console.log(whole_code);\r",
+							"pm.globals.set(\"whole_code\", whole_code);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{ticket}}",
+						"type": "default",
+						"disabled": true
+					},
+					{
+						"key": "SystemId",
+						"value": "{{SystemId}}",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"eqpCode\": \"切片机001\",\r\n    \"carrierSn\": \"LH01\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipport_mes}}/cut/wafer/getWaferIdList",
+					"host": [
+						"{{ipport_mes}}"
+					],
+					"path": [
+						"cut",
+						"wafer",
+						"getWaferIdList"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "1.2切片-Wafer 信息登记（进）",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var result = JSON.parse(responseBody);\r",
+							"var s = result.msg\r",
+							"var z = pm.globals.get(\"msg\");\r",
+							"pm.test(\"响应成功\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(z);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"procId\": \"STC\",\r\n    \"eqpCode\":\"切片机001\",\r\n    \"waferDecimalCode\":\"{{whole_code}}\",\r\n    \"chamberCode\":\"01\",\r\n    \"type\":\"in\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipport_mes}}/cut/wafer/info",
+					"host": [
+						"{{ipport_mes}}"
+					],
+					"path": [
+						"cut",
+						"wafer",
+						"info"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "1.3切片-wafer检测信息AOI（整片）",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var result = JSON.parse(responseBody);\r",
+							"var s = result.msg\r",
+							"var z = pm.globals.get(\"msg\");\r",
+							"pm.test(\"响应成功\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(z);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"procId\":\"STC\",\r\n    \"eqpCode\":\"切片机001\",\r\n    \"waferDecimalCode\":\"{{whole_code}}\",\r\n    \"portCode\":\"1\",\r\n    \"measurerId\":\"SMZtest\",\r\n    \"direction\":\"1\",\r\n    \"rank\":\"A\",\r\n    \"defectCode\":\"Q02\",\r\n    \"fileUrl\":\"http://www.baidu.com\",\r\n    \"time\":\"20220311213010\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipport_mes}}/cut/wafer/checkForAOI",
+					"host": [
+						"{{ipport_mes}}"
+					],
+					"path": [
+						"cut",
+						"wafer",
+						"checkForAOI"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "1.5切片-Wafer 信息登记（出）",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var result = JSON.parse(responseBody);\r",
+							"var s = result.msg\r",
+							"var z = pm.globals.get(\"msg\");\r",
+							"pm.test(\"响应成功\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(z);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"procId\": \"STC\",\r\n    \"eqpCode\":\"切片机001\",\r\n    \"waferDecimalCode\":\"{{whole_code}}\",\r\n    \"chamberCode\":\"01\",\r\n    \"type\":\"out\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipport_mes}}/cut/wafer/info",
+					"host": [
+						"{{ipport_mes}}"
+					],
+					"path": [
+						"cut",
+						"wafer",
+						"info"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "1.6切片-wafer检测信息AOI（半片）",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var result = JSON.parse(responseBody);\r",
+							"var s = result.msg\r",
+							"var z = pm.globals.get(\"msg\");\r",
+							"pm.test(\"响应成功\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(z);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"procId\":\"STC\",\r\n    \"eqpCode\":\"切片机001\",\r\n    \"waferDecimalCode\":\"{{wafer_no1}}\",\r\n    \"portCode\":\"1\",\r\n    \"measurerId\":\"SMZtest\",\r\n    \"direction\":\"1\",\r\n    \"rank\":\"A\",\r\n    \"defectCode\":\"Q02\",\r\n    \"fileUrl\":\"http://www.baidu.com\",\r\n    \"time\":\"20220311213010\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipport_mes}}/cut/wafer/checkForAOI",
+					"host": [
+						"{{ipport_mes}}"
+					],
+					"path": [
+						"cut",
+						"wafer",
+						"checkForAOI"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "1.8切片-切片出 cassette",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var result = JSON.parse(responseBody);\r",
+							"var s = result.msg\r",
+							"var z = pm.globals.get(\"msg\");\r",
+							"pm.test(\"响应成功\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(z);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"eqpCode\": \"切片机001\",\r\n    \"woCode\":\"WO202202280001\",\r\n    \"carrierSn\": \"{{cas_1}}\",\r\n    \"qty\": \"2\",\r\n    \"waferList\": [\r\n        {\r\n            \"waferDecimalCode\": \"{{wafer_no1}}\",\r\n            \"slot\": \"1\",\r\n            \"waferRow\": \"1\"\r\n        },\r\n        {\r\n            \"waferDecimalCode\": \"{{wafer_no2}}\",\r\n            \"slot\": \"1\",\r\n            \"waferRow\": \"2\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipport_mes}}/cut/wafer/confirmCut",
+					"host": [
+						"{{ipport_mes}}"
+					],
+					"path": [
+						"cut",
+						"wafer",
+						"confirmCut"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2.1制绒-上下机（上机）",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var result = JSON.parse(responseBody);\r",
+							"var s = result.msg\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"响应成功\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(s);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"procId\": \"CLN\",\r\n    \"carrierSn\": \"{{cas_1}}\",\r\n    \"eqpCode\": \"zrj001\",\r\n    \"portCode\": \"01\",\r\n    \"woCode\": \"{{woCode}}\",\r\n    \"actionView\": \"CheckIn\",\r\n    \"carrierWeight\": \"1.2345678\",\r\n    \"qty\":\"2\",\r\n    \"waferList\": [\r\n        {\r\n            \"waferDecimalCode\": \"{{wafer_no1}}\",\r\n            \"slot\": \"1\",\r\n            \"waferRow\": \"1\"\r\n        },\r\n        {\r\n            \"waferDecimalCode\": \"{{wafer_no2}}\",\r\n            \"slot\": \"1\",\r\n            \"waferRow\": \"2\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipport_mes}}/track/checkInOrOut",
+					"host": [
+						"{{ipport_mes}}"
+					],
+					"path": [
+						"track",
+						"checkInOrOut"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2.2制绒-载具称重(cassette)（in）",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var result = JSON.parse(responseBody);\r",
+							"var s = result.msg\r",
+							"var z = pm.globals.get(\"msg\");\r",
+							"pm.test(\"响应成功\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(z);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"procId\":\"CLN\",\r\n    \"eqpCode\":\"zrj001\",\r\n    \"carrierSn\":\"{{cas_1}}\",\r\n    \"weight\":\"3.221234567\",\r\n    \"type\":\"before\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipport_mes}}/track/carrier/weight",
+					"host": [
+						"{{ipport_mes}}"
+					],
+					"path": [
+						"track",
+						"carrier",
+						"weight"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2.3制绒-载具信息登记（cassette）（in）",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var result = JSON.parse(responseBody);\r",
+							"var s = result.msg\r",
+							"var z = pm.globals.get(\"msg\");\r",
+							"pm.test(\"响应成功\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(z);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"procId\":\"CLN\",\r\n    \"carrierSn\":\"{{cas_1}}\",\r\n    \"eqpCode\":\"zrj001\",\r\n    \"chamberCode\":\"01\",\r\n    \"action\":\"in\",\r\n    \"trayPosition\":\"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipport_mes}}/info/carrier",
+					"host": [
+						"{{ipport_mes}}"
+					],
+					"path": [
+						"info",
+						"carrier"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2.4制绒-载具信息登记（cassette）（out）",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var result = JSON.parse(responseBody);\r",
+							"var s = result.msg\r",
+							"var z = pm.globals.get(\"msg\");\r",
+							"pm.test(\"响应成功\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(z);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"procId\":\"CLN\",\r\n    \"carrierSn\":\"{{cas_1}}\",\r\n    \"eqpCode\":\"zrj001\",\r\n    \"chamberCode\":\"01\",\r\n    \"action\":\"out\",\r\n    \"trayPosition\":\"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipport_mes}}/info/carrier",
+					"host": [
+						"{{ipport_mes}}"
+					],
+					"path": [
+						"info",
+						"carrier"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2.5制绒-载具称重（cassette）（out）",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var result = JSON.parse(responseBody);\r",
+							"var s = result.msg\r",
+							"var z = pm.globals.get(\"msg\");\r",
+							"pm.test(\"响应成功\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(z);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"procId\":\"CLN\",\r\n    \"eqpCode\":\"zrj001\",\r\n    \"carrierSn\":\"{{cas_1}}\",\r\n    \"weight\":\"3.221234567\",\r\n    \"type\":\"after\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipport_mes}}/track/carrier/weight",
+					"host": [
+						"{{ipport_mes}}"
+					],
+					"path": [
+						"track",
+						"carrier",
+						"weight"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2.6制绒-上下机（下机）",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var result = JSON.parse(responseBody);\r",
+							"var s = result.msg\r",
+							"var z = pm.globals.get(\"msg\");\r",
+							"pm.test(\"响应成功\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(z);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"procId\": \"CLN\",\r\n    \"carrierSn\": \"{{cas_1}}\",\r\n    \"eqpCode\": \"zrj001\",\r\n    \"portCode\": \"01\",\r\n    \"woCode\": \"{{woCode}}\",\r\n    \"actionView\": \"CheckOut\",\r\n    \"carrierWeight\": \"1.2345678\",\r\n    \"qty\":\"2\",\r\n    \"waferList\": [\r\n        {\r\n            \"waferDecimalCode\": \"{{wafer_no1}}\",\r\n            \"slot\": \"1\",\r\n            \"waferRow\": \"1\"\r\n        },\r\n        {\r\n            \"waferDecimalCode\": \"{{wafer_no2}}\",\r\n            \"slot\": \"1\",\r\n            \"waferRow\": \"2\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipport_mes}}/track/checkInOrOut",
+					"host": [
+						"{{ipport_mes}}"
+					],
+					"path": [
+						"track",
+						"checkInOrOut"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3.1CVD-上下机（上机）",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var result = JSON.parse(responseBody);\r",
+							"var s = result.msg\r",
+							"var z = pm.globals.get(\"msg\");\r",
+							"pm.test(\"响应成功\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(z);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"procId\": \"CVD\",\r\n    \"carrierSn\": \"{{cas_1}}\",\r\n    \"eqpCode\": \"PECVD001\",\r\n    \"portCode\": \"01\",\r\n    \"woCode\": \"WO202202280001\",\r\n    \"actionView\": \"CheckIn\",\r\n    \"carrierWeight\": \"12.223\",\r\n    \"qty\":\"2\",\r\n    \"waferList\": [\r\n        {\r\n            \"waferDecimalCode\": \"{{wafer_no1}}\",\r\n            \"slot\": \"1\",\r\n            \"waferRow\": \"1\"\r\n        },\r\n        {\r\n            \"waferDecimalCode\": \"{{wafer_no2}}\",\r\n            \"slot\": \"1\",\r\n            \"waferRow\": \"2\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipport_mes}}/track/checkInOrOut",
+					"host": [
+						"{{ipport_mes}}"
+					],
+					"path": [
+						"track",
+						"checkInOrOut"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3.2CVD-载具信息登记（托盘）（in）（upper）",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var result = JSON.parse(responseBody);\r",
+							"var s = result.msg\r",
+							"var z = pm.globals.get(\"msg\");\r",
+							"pm.test(\"响应成功\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(z);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"procId\":\"CVD\",\r\n    \"carrierSn\":\"{{try_1}}\",\r\n    \"eqpCode\":\"PECVD001\",\r\n    \"chamberCode\":\"01\",\r\n    \"action\":\"in\",\r\n    \"trayPosition\":\"upper\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipport_mes}}/info/carrier",
+					"host": [
+						"{{ipport_mes}}"
+					],
+					"path": [
+						"info",
+						"carrier"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3.3CVD-托盘 Wafer 登记(累加使用次数)（upper）",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var result = JSON.parse(responseBody);\r",
+							"var s = result.msg\r",
+							"var z = pm.globals.get(\"msg\");\r",
+							"pm.test(\"响应成功\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(z);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"procId\": \"CVD\",\r\n    \"eqpCode\": \"PECVD001\",\r\n    \"carrierSn\": \"{{try_1}}\",\r\n    \"trayPosition\": \"upper\",\r\n    \"waferList\": [\r\n        {\r\n            \"waferDecimalCode\": \"{{wafer_no1}}\",\r\n            \"slot\": \"1\",\r\n            \"waferRow\": \"1\"\r\n        },\r\n        {\r\n            \"waferDecimalCode\": \"{{wafer_no2}}\",\r\n            \"slot\": \"2\",\r\n            \"waferRow\": \"1\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipport_mes}}/info/tray/wafer",
+					"host": [
+						"{{ipport_mes}}"
+					],
+					"path": [
+						"info",
+						"tray",
+						"wafer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3.4CVD-载具信息登记（托盘）（out）（upper）",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var result = JSON.parse(responseBody);\r",
+							"var s = result.msg\r",
+							"var z = pm.globals.get(\"msg\");\r",
+							"pm.test(\"响应成功\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(z);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"procId\":\"CVD\",\r\n    \"carrierSn\":\"{{try_1}}\",\r\n    \"eqpCode\":\"PECVD001\",\r\n    \"chamberCode\":\"01\",\r\n    \"action\":\"out\",\r\n    \"trayPosition\":\"upper\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipport_mes}}/info/carrier",
+					"host": [
+						"{{ipport_mes}}"
+					],
+					"path": [
+						"info",
+						"carrier"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3.5CVD-载具信息登记（托盘）（in）（lower）",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var result = JSON.parse(responseBody);\r",
+							"var s = result.msg\r",
+							"var z = pm.globals.get(\"msg\");\r",
+							"pm.test(\"响应成功\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(z);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"procId\":\"CVD\",\r\n    \"carrierSn\":\"{{try_2}}\",\r\n    \"eqpCode\":\"PECVD001\",\r\n    \"chamberCode\":\"01\",\r\n    \"action\":\"in\",\r\n    \"trayPosition\":\"lower\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipport_mes}}/info/carrier",
+					"host": [
+						"{{ipport_mes}}"
+					],
+					"path": [
+						"info",
+						"carrier"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3.6CVD-托盘 Wafer 登记(累加使用次数)（lower）",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var result = JSON.parse(responseBody);\r",
+							"var s = result.sucess\r",
+							"var z = pm.globals.get(\"success\");\r",
+							"pm.test(\"响应成功\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(z);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"procId\": \"CVD\",\r\n    \"eqpCode\": \"PECVD001\",\r\n    \"carrierSn\": \"{{try_2}}\",\r\n    \"trayPosition\": \"lower\",\r\n    \"waferList\": [\r\n        {\r\n            \"waferDecimalCode\": \"{{wafer_no1}}\",\r\n            \"slot\": \"1\",\r\n            \"waferRow\": \"1\"\r\n        },\r\n        {\r\n            \"waferDecimalCode\": \"{{wafer_no2}}\",\r\n            \"slot\": \"2\",\r\n            \"waferRow\": \"1\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipport_mes}}/info/tray/wafer",
+					"host": [
+						"{{ipport_mes}}"
+					],
+					"path": [
+						"info",
+						"tray",
+						"wafer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3.7CVD-PL 检测结果上报",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var result = JSON.parse(responseBody);\r",
+							"var s = result.msg\r",
+							"var z = pm.globals.get(\"msg\");\r",
+							"pm.test(\"响应成功\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(z);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"procId\":\"CVD\",\r\n    \"eqpCode\":\"PECVD001\",\r\n    \"portCode\":\"1\",\r\n    \"waferDecimalCode\":\"{{wafer_no2}}\",\r\n    \"measurerId\":\"smztest\",\r\n    \"rank\":\"B\",\r\n    \"defectCode\":\"Q01\",\r\n    \"avgGray\":\"3.1234567\",\r\n    \"plateId\":\"test01\",\r\n    \"locationNo\":\"test01\",\r\n    \"checkParameter\": {\r\n        \"name\": \"张三\",\r\n        \"job\":\"法外狂徒\"\r\n    },\r\n    \"fileUrl\":\"http://www.baidu.com\",\r\n    \"time\":\"20220317110200\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipport_mes}}/check/pl",
+					"host": [
+						"{{ipport_mes}}"
+					],
+					"path": [
+						"check",
+						"pl"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3.9CVD-载具信息登记（托盘）（out）（lower）",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var result = JSON.parse(responseBody);\r",
+							"var s = result.msg\r",
+							"var z = pm.globals.get(\"msg\");\r",
+							"pm.test(\"响应成功\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(z);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"procId\":\"CVD\",\r\n    \"carrierSn\":\"{{try_2}}\",\r\n    \"eqpCode\":\"PECVD001\",\r\n    \"chamberCode\":\"01\",\r\n    \"action\":\"out\",\r\n    \"trayPosition\":\"lower\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipport_mes}}/info/carrier",
+					"host": [
+						"{{ipport_mes}}"
+					],
+					"path": [
+						"info",
+						"carrier"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3.10CVD-托盘维保接口（重置清洗）（start）",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var result = JSON.parse(responseBody);\r",
+							"var s = result.msg\r",
+							"var z = pm.globals.get(\"msg\");\r",
+							"pm.test(\"响应成功\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(z);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"procId\":\"CVD\",\r\n    \"carrierSn\":\"{{try_1}}\",\r\n    \"eqpCode\":\"PECVD001\",\r\n    \"chamberCode\":\"01\",\r\n    \"type\":\"Clean\",\r\n    \"actionTime\":1647496800000,\r\n    \"actionType\":\"Start\",\r\n    \"location\":\"upper\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipport_mes}}/info/tray/maintenance",
+					"host": [
+						"{{ipport_mes}}"
+					],
+					"path": [
+						"info",
+						"tray",
+						"maintenance"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3.11CVD-托盘维保接口（重置清洗）（end）",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var result = JSON.parse(responseBody);\r",
+							"var s = result.msg\r",
+							"var z = pm.globals.get(\"msg\");\r",
+							"pm.test(\"响应成功\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(z);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"procId\":\"CVD\",\r\n    \"carrierSn\":\"{{try_1}}\",\r\n    \"eqpCode\":\"PECVD001\",\r\n    \"chamberCode\":\"01\",\r\n    \"type\":\"Clean\",\r\n    \"actionTime\":1647496800000,\r\n    \"actionType\":\"End\",\r\n    \"location\":\"upper\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipport_mes}}/info/tray/maintenance",
+					"host": [
+						"{{ipport_mes}}"
+					],
+					"path": [
+						"info",
+						"tray",
+						"maintenance"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3.12CVD-托盘维保接口（重置镀膜）（start）",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var result = JSON.parse(responseBody);\r",
+							"var s = result.msg\r",
+							"var z = pm.globals.get(\"msg\");\r",
+							"pm.test(\"响应成功\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(z);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"procId\":\"CVD\",\r\n    \"carrierSn\":\"{{try_1}}\",\r\n    \"eqpCode\":\"PECVD001\",\r\n    \"chamberCode\":\"01\",\r\n    \"type\":\"Coating\",\r\n    \"actionTime\":1647496800000,\r\n    \"actionType\":\"Start\",\r\n    \"location\":\"lower\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipport_mes}}/info/tray/maintenance",
+					"host": [
+						"{{ipport_mes}}"
+					],
+					"path": [
+						"info",
+						"tray",
+						"maintenance"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3.13CVD-托盘维保接口（重置镀膜）（end）",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var result = JSON.parse(responseBody);\r",
+							"var s = result.msg\r",
+							"var z = pm.globals.get(\"msg\");\r",
+							"pm.test(\"响应成功\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(z);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"procId\":\"CVD\",\r\n    \"carrierSn\":\"{{try_1}}\",\r\n    \"eqpCode\":\"PECVD001\",\r\n    \"chamberCode\":\"01\",\r\n    \"type\":\"Coating\",\r\n    \"actionTime\":1647496800000,\r\n    \"actionType\":\"End\",\r\n    \"location\":\"lower\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipport_mes}}/info/tray/maintenance",
+					"host": [
+						"{{ipport_mes}}"
+					],
+					"path": [
+						"info",
+						"tray",
+						"maintenance"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3.14CVD-上下机（下机）",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var result = JSON.parse(responseBody);\r",
+							"var s = result.msg\r",
+							"var z = pm.globals.get(\"msg\");\r",
+							"pm.test(\"响应成功\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(z);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"procId\": \"CVD\",\r\n    \"carrierSn\": \"{{cas_2}}\",\r\n    \"eqpCode\": \"PECVD001\",\r\n    \"portCode\": \"01\",\r\n    \"woCode\": \"WO202202280001\",\r\n    \"actionView\": \"CheckOut\",\r\n    \"carrierWeight\": \"1.2345678\",\r\n    \"qty\":\"2\",\r\n    \"waferList\": [\r\n        {\r\n            \"waferDecimalCode\": \"{{wafer_no1}}\",\r\n            \"slot\": \"1\",\r\n            \"waferRow\": \"1\"\r\n        },\r\n        {\r\n            \"waferDecimalCode\": \"{{wafer_no2}}\",\r\n            \"slot\": \"1\",\r\n            \"waferRow\": \"2\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipport_mes}}/track/checkInOrOut",
+					"host": [
+						"{{ipport_mes}}"
+					],
+					"path": [
+						"track",
+						"checkInOrOut"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4.1PVD-上下机（上机）",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var result = JSON.parse(responseBody);\r",
+							"var s = result.msg\r",
+							"var z = pm.globals.get(\"msg\");\r",
+							"pm.test(\"响应成功\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(z);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"procId\": \"PVD\",\r\n    \"carrierSn\": \"{{cas_2}}\",\r\n    \"eqpCode\": \"PVD001\",\r\n    \"portCode\": \"01\",\r\n    \"woCode\": \"WO202202280001\",\r\n    \"actionView\": \"CheckIn\",\r\n    \"carrierWeight\": \"1.2345678\",\r\n    \"qty\":\"2\",\r\n    \"waferList\": [\r\n        {\r\n            \"waferDecimalCode\": \"{{wafer_no1}}\",\r\n            \"slot\": \"1\",\r\n            \"waferRow\": \"1\"\r\n        },\r\n        {\r\n            \"waferDecimalCode\": \"{{wafer_no2}}\",\r\n            \"slot\": \"1\",\r\n            \"waferRow\": \"2\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipport_mes}}/track/checkInOrOut",
+					"host": [
+						"{{ipport_mes}}"
+					],
+					"path": [
+						"track",
+						"checkInOrOut"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4.2PVD-上料 cassette 需要拿走",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var result = JSON.parse(responseBody);\r",
+							"var s = result.msg\r",
+							"var z = pm.globals.get(\"msg\");\r",
+							"pm.test(\"响应成功\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(z);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"carrierSn\":\"{{cas_2}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipport_mes}}/track/cassette/release",
+					"host": [
+						"{{ipport_mes}}"
+					],
+					"path": [
+						"track",
+						"cassette",
+						"release"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4.3PVD-载具信息登记（托盘）（in）",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var result = JSON.parse(responseBody);\r",
+							"var s = result.msg\r",
+							"var z = pm.globals.get(\"msg\");\r",
+							"pm.test(\"响应成功\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(z);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"procId\":\"PVD\",\r\n    \"carrierSn\":\"{{try_3}}\",\r\n    \"eqpCode\":\"PVD001\",\r\n    \"chamberCode\":\"01\",\r\n    \"action\":\"in\",\r\n    \"trayPosition\":\"upper\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipport_mes}}/info/carrier",
+					"host": [
+						"{{ipport_mes}}"
+					],
+					"path": [
+						"info",
+						"carrier"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4.4PVD-托盘 Wafer 登记(累加使用次数)（upper）",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var result = JSON.parse(responseBody);\r",
+							"var s = result.msg\r",
+							"var z = pm.globals.get(\"msg\");\r",
+							"pm.test(\"响应成功\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(z);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"procId\": \"PVD\",\r\n    \"eqpCode\": \"PVD001\",\r\n    \"carrierSn\": \"{{try_3}}\",\r\n    \"trayPosition\": \"upper\",\r\n    \"waferList\": [\r\n        {\r\n            \"waferDecimalCode\": \"{{wafer_no1}}\",\r\n            \"slot\": \"1\",\r\n            \"waferRow\": \"1\"\r\n        },\r\n        {\r\n            \"waferDecimalCode\": \"{{wafer_no2}}\",\r\n            \"slot\": \"2\",\r\n            \"waferRow\": \"1\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipport_mes}}/info/tray/wafer",
+					"host": [
+						"{{ipport_mes}}"
+					],
+					"path": [
+						"info",
+						"tray",
+						"wafer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4.5PVD-托盘 Wafer 登记(累加使用次数)（lower）",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var result = JSON.parse(responseBody);\r",
+							"var s = result.msg\r",
+							"var z = pm.globals.get(\"msg\");\r",
+							"pm.test(\"响应成功\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(z);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"procId\": \"PVD\",\r\n    \"eqpCode\": \"PVD001\",\r\n    \"carrierSn\": \"{{try_3}}\",\r\n    \"trayPosition\": \"lower\",\r\n    \"waferList\": [\r\n        {\r\n            \"waferDecimalCode\": \"{{wafer_no1}}\",\r\n            \"slot\": \"1\",\r\n            \"waferRow\": \"1\"\r\n        },\r\n        {\r\n            \"waferDecimalCode\": \"{{wafer_no2}}\",\r\n            \"slot\": \"2\",\r\n            \"waferRow\": \"1\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipport_mes}}/info/tray/wafer",
+					"host": [
+						"{{ipport_mes}}"
+					],
+					"path": [
+						"info",
+						"tray",
+						"wafer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4.6PVD-PL 检测结果上报",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var result = JSON.parse(responseBody);\r",
+							"var s = result.msg\r",
+							"var z = pm.globals.get(\"msg\");\r",
+							"pm.test(\"响应成功\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(z);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"procId\":\"PVD\",\r\n    \"eqpCode\":\"PVD001\",\r\n    \"portCode\":\"1\",\r\n    \"waferDecimalCode\":\"{{wafer_no2}}\",\r\n    \"measurerId\":\"smztest\",\r\n    \"rank\":\"B\",\r\n    \"defectCode\":\"Q01\",\r\n    \"avgGray\":\"3.1234567\",\r\n    \"plateId\":\"test01\",\r\n    \"locationNo\":\"test01\",\r\n    \"checkParameter\": {\r\n        \"name\": \"张三\",\r\n        \"job\":\"法外狂徒\"\r\n    },\r\n    \"fileUrl\":\"http://www.baidu.com\",\r\n    \"time\":\"20220317110200\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipport_mes}}/check/pl",
+					"host": [
+						"{{ipport_mes}}"
+					],
+					"path": [
+						"check",
+						"pl"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4.8PVD-方阻检测结果上报",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var result = JSON.parse(responseBody);\r",
+							"var s = result.msg\r",
+							"var z = pm.globals.get(\"msg\");\r",
+							"pm.test(\"响应成功\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(z);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"procId\":\"PVD\",\r\n    \"eqpCode\":\"PVD001\",\r\n    \"portCode\":\"1\",\r\n    \"waferDecimalCode\":\"{{wafer_no2}}\",\r\n    \"measurerId\":\"smztest\",\r\n    \"frontRshAvg\":\"1.1234567\",\r\n    \"frontRshSd\":\"2.1234567\",\r\n    \"frontThickness\":\"3.1234567\",\r\n    \"frontRshMin\":\"4.1234567\",\r\n    \"frontRshMax\":\"5.1234567\",\r\n    \"numberOfSamples\":\"6.1234567\",\r\n    \"backRshAvg\":\"7.1234567\",\r\n    \"backRshSd\":\"8.1234567\",\r\n    \"backThickness\":\"9.1234567\",\r\n    \"backRshMin\":\"10.1234567\",\r\n    \"backRshMax\":\"11.1234567\",\r\n    \"checkParameter\": {\r\n        \"name\": \"张三\",\r\n        \"job\":\"法外狂徒\"\r\n    },\r\n    \"time\":\"20220318120010\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipport_mes}}/check/sr",
+					"host": [
+						"{{ipport_mes}}"
+					],
+					"path": [
+						"check",
+						"sr"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4.10PVD-载具信息登记（托盘）（out）",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var result = JSON.parse(responseBody);\r",
+							"var s = result.msg\r",
+							"var z = pm.globals.get(\"msg\");\r",
+							"pm.test(\"响应成功\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(z);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"procId\":\"PVD\",\r\n    \"carrierSn\":\"{{try_3}}\",\r\n    \"eqpCode\":\"PVD001\",\r\n    \"chamberCode\":\"01\",\r\n    \"action\":\"out\",\r\n    \"trayPosition\":\"upper\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipport_mes}}/info/carrier",
+					"host": [
+						"{{ipport_mes}}"
+					],
+					"path": [
+						"info",
+						"carrier"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4.11PVD-托盘维保接口（重置清洗）（start）",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var result = JSON.parse(responseBody);\r",
+							"var s = result.msg\r",
+							"var z = pm.globals.get(\"msg\");\r",
+							"pm.test(\"响应成功\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(z);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"procId\":\"PVD\",\r\n    \"carrierSn\":\"{{try_3}}\",\r\n    \"eqpCode\":\"PVD001\",\r\n    \"chamberCode\":\"01\",\r\n    \"type\":\"Clean\",\r\n    \"actionTime\":1647496800000,\r\n    \"actionType\":\"Start\",\r\n    \"location\":\"upper\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipport_mes}}/info/tray/maintenance",
+					"host": [
+						"{{ipport_mes}}"
+					],
+					"path": [
+						"info",
+						"tray",
+						"maintenance"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4.12PVD-托盘维保接口（重置清洗）（end）",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var result = JSON.parse(responseBody);\r",
+							"var s = result.msg\r",
+							"var z = pm.globals.get(\"msg\");\r",
+							"pm.test(\"响应成功\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(z);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"procId\":\"PVD\",\r\n    \"carrierSn\":\"{{try_3}}\",\r\n    \"eqpCode\":\"PVD001\",\r\n    \"chamberCode\":\"01\",\r\n    \"type\":\"Clean\",\r\n    \"actionTime\":1647496800000,\r\n    \"actionType\":\"End\",\r\n    \"location\":\"upper\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipport_mes}}/info/tray/maintenance",
+					"host": [
+						"{{ipport_mes}}"
+					],
+					"path": [
+						"info",
+						"tray",
+						"maintenance"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4.13PVD-托盘维保接口（重置镀膜）（start）",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var result = JSON.parse(responseBody);\r",
+							"var s = result.msg\r",
+							"var z = pm.globals.get(\"msg\");\r",
+							"pm.test(\"响应成功\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(z);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"procId\":\"PVD\",\r\n    \"carrierSn\":\"{{try_3}}\",\r\n    \"eqpCode\":\"PVD001\",\r\n    \"chamberCode\":\"01\",\r\n    \"type\":\"Coating\",\r\n    \"actionTime\":1647496800000,\r\n    \"actionType\":\"Start\",\r\n    \"location\":\"lower\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipport_mes}}/info/tray/maintenance",
+					"host": [
+						"{{ipport_mes}}"
+					],
+					"path": [
+						"info",
+						"tray",
+						"maintenance"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4.14PVD-托盘维保接口（重置镀膜）（end）",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var result = JSON.parse(responseBody);\r",
+							"var s = result.msg\r",
+							"var z = pm.globals.get(\"msg\");\r",
+							"pm.test(\"响应成功\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(z);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"procId\":\"PVD\",\r\n    \"carrierSn\":\"{{try_3}}\",\r\n    \"eqpCode\":\"PVD001\",\r\n    \"chamberCode\":\"01\",\r\n    \"type\":\"Coating\",\r\n    \"actionTime\":1647496800000,\r\n    \"actionType\":\"End\",\r\n    \"location\":\"lower\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipport_mes}}/info/tray/maintenance",
+					"host": [
+						"{{ipport_mes}}"
+					],
+					"path": [
+						"info",
+						"tray",
+						"maintenance"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4.15PVD-上下机（下机）",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var result = JSON.parse(responseBody);\r",
+							"var s = result.msg\r",
+							"var z = pm.globals.get(\"msg\");\r",
+							"pm.test(\"响应成功\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(z);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"procId\": \"PVD\",\r\n    \"carrierSn\": \"{{cas_3}}\",\r\n    \"eqpCode\": \"PVD001\",\r\n    \"portCode\": \"01\",\r\n    \"woCode\": \"WO202202280001\",\r\n    \"actionView\": \"CheckOut\",\r\n    \"carrierWeight\": \"1.2345678\",\r\n    \"qty\":\"2\",\r\n    \"waferList\": [\r\n        {\r\n            \"waferDecimalCode\": \"{{wafer_no1}}\",\r\n            \"slot\": \"1\",\r\n            \"waferRow\": \"1\"\r\n        },\r\n        {\r\n            \"waferDecimalCode\": \"{{wafer_no2}}\",\r\n            \"slot\": \"1\",\r\n            \"waferRow\": \"2\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipport_mes}}/track/checkInOrOut",
+					"host": [
+						"{{ipport_mes}}"
+					],
+					"path": [
+						"track",
+						"checkInOrOut"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5.1SPT-上下机（上机）",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var result = JSON.parse(responseBody);\r",
+							"var s = result.msg\r",
+							"var z = pm.globals.get(\"msg\");\r",
+							"pm.test(\"响应成功\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(z);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"procId\": \"SPT\",\r\n    \"carrierSn\": \"{{cas_3}}\",\r\n    \"eqpCode\": \"swys001\",\r\n    \"portCode\": \"01\",\r\n    \"woCode\": \"WO202202280001\",\r\n    \"actionView\": \"CheckIn\",\r\n    \"carrierWeight\": \"12.223\",\r\n    \"qty\":\"2\",\r\n    \"waferList\": [\r\n        {\r\n            \"waferDecimalCode\": \"{{wafer_no1}}\",\r\n            \"slot\": \"1\",\r\n            \"waferRow\": \"1\"\r\n        },\r\n        {\r\n            \"waferDecimalCode\": \"{{wafer_no2}}\",\r\n            \"slot\": \"1\",\r\n            \"waferRow\": \"2\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipport_mes}}/track/checkInOrOut",
+					"host": [
+						"{{ipport_mes}}"
+					],
+					"path": [
+						"track",
+						"checkInOrOut"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5.2SPT-电池片称重（1 before）",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var result = JSON.parse(responseBody);\r",
+							"var s = result.msg\r",
+							"var z = pm.globals.get(\"msg\");\r",
+							"pm.test(\"响应成功\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(z);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"procId\": \"SPT\",\r\n    \"eqpCode\": \"swys001\",\r\n    \"printCode\": \"A\",\r\n    \"waferDecimalCode\": \"{{wafer_no1}}\",\r\n    \"weight\": \"1.12345678\",\r\n    \"type\": \"before\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipport_mes}}/info/battery/weight",
+					"host": [
+						"{{ipport_mes}}"
+					],
+					"path": [
+						"info",
+						"battery",
+						"weight"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5.3SPT-电池片进出印刷设备（1  in）",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var result = JSON.parse(responseBody);\r",
+							"var s = result.msg\r",
+							"var z = pm.globals.get(\"msg\");\r",
+							"pm.test(\"响应成功\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(z);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"procId\":\"SPT\",\r\n    \"eqpCode\":\"swys001\",\r\n    \"printCode\":\"A\",\r\n    \"waferDecimalCode\":\"{{wafer_no1}}\",\r\n    \"action\":\"in\",\r\n    \"time\":\"202203151457\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipport_mes}}/info/battery/print",
+					"host": [
+						"{{ipport_mes}}"
+					],
+					"path": [
+						"info",
+						"battery",
+						"print"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5.4SPT-电池片进出印刷设备（1 out）",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var result = JSON.parse(responseBody);\r",
+							"var s = result.msg\r",
+							"var z = pm.globals.get(\"msg\");\r",
+							"pm.test(\"响应成功\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(z);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"procId\":\"SPT\",\r\n    \"eqpCode\":\"swys001\",\r\n    \"printCode\":\"A\",\r\n    \"waferDecimalCode\":\"{{wafer_no1}}\",\r\n    \"action\":\"out\",\r\n    \"time\":\"202203151457\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipport_mes}}/info/battery/print",
+					"host": [
+						"{{ipport_mes}}"
+					],
+					"path": [
+						"info",
+						"battery",
+						"print"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5.5SPT-电池片称重（1 after）",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var result = JSON.parse(responseBody);\r",
+							"var s = result.msg\r",
+							"var z = pm.globals.get(\"msg\");\r",
+							"pm.test(\"响应成功\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(z);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"procId\": \"SPT\",\r\n    \"eqpCode\": \"swys001\",\r\n    \"printCode\": \"A\",\r\n    \"waferDecimalCode\": \"{{wafer_no1}}\",\r\n    \"weight\": \"1.12345678\",\r\n    \"type\": \"after\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipport_mes}}/info/battery/weight",
+					"host": [
+						"{{ipport_mes}}"
+					],
+					"path": [
+						"info",
+						"battery",
+						"weight"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5.6SPT-烘干设备cassette进出（1 in）",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var result = JSON.parse(responseBody);\r",
+							"var s = result.msg\r",
+							"var z = pm.globals.get(\"msg\");\r",
+							"pm.test(\"响应成功\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(z);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"procId\": \"SPT\",\r\n    \"carrierSn\": \"{{cas_3}}\",\r\n    \"eqpCode\": \"swys001\",\r\n    \"chamberCode\": \"01\",\r\n    \"action\": \"in\",\r\n    \"qty\": \"2\",\r\n    \"waferList\": [\r\n        {\r\n            \"waferDecimalCode\": \"{{wafer_no1}}\",\r\n            \"slot\": \"1\",\r\n            \"waferRow\": \"1\"\r\n        },\r\n        {\r\n            \"waferDecimalCode\": \"{{wafer_no2}}\",\r\n            \"slot\": \"2\",\r\n            \"waferRow\": \"1\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipport_mes}}/info/dry/InOrOut",
+					"host": [
+						"{{ipport_mes}}"
+					],
+					"path": [
+						"info",
+						"dry",
+						"InOrOut"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5.7SPT-烘干设备cassette进出（1 out）",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var result = JSON.parse(responseBody);\r",
+							"var s = result.msg\r",
+							"var z = pm.globals.get(\"msg\");\r",
+							"pm.test(\"响应成功\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(z);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"procId\": \"SPT\",\r\n    \"carrierSn\": \"{{cas_3}}\",\r\n    \"eqpCode\": \"swys001\",\r\n    \"chamberCode\": \"01\",\r\n    \"action\": \"out\",\r\n    \"qty\": \"2\",\r\n    \"waferList\": [\r\n        {\r\n            \"waferDecimalCode\": \"{{wafer_no1}}\",\r\n            \"slot\": \"1\",\r\n            \"waferRow\": \"1\"\r\n        },\r\n        {\r\n            \"waferDecimalCode\": \"{{wafer_no2}}\",\r\n            \"slot\": \"2\",\r\n            \"waferRow\": \"1\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipport_mes}}/info/dry/InOrOut",
+					"host": [
+						"{{ipport_mes}}"
+					],
+					"path": [
+						"info",
+						"dry",
+						"InOrOut"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5.8SPT-电池片称重（2 in）",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var result = JSON.parse(responseBody);\r",
+							"var s = result.msg\r",
+							"var z = pm.globals.get(\"msg\");\r",
+							"pm.test(\"响应成功\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(z);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"procId\": \"SPT\",\r\n    \"eqpCode\": \"swys001\",\r\n    \"printCode\": \"B\",\r\n    \"waferDecimalCode\": \"{{wafer_no1}}\",\r\n    \"weight\": \"1.12345678\",\r\n    \"type\": \"before\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipport_mes}}/info/battery/weight",
+					"host": [
+						"{{ipport_mes}}"
+					],
+					"path": [
+						"info",
+						"battery",
+						"weight"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5.9SPT-电池片进出印刷设备（2 in）",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var result = JSON.parse(responseBody);\r",
+							"var s = result.msg\r",
+							"var z = pm.globals.get(\"msg\");\r",
+							"pm.test(\"响应成功\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(z);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"procId\":\"SPT\",\r\n    \"eqpCode\":\"swys001\",\r\n    \"printCode\":\"B\",\r\n    \"waferDecimalCode\":\"{{wafer_no1}}\",\r\n    \"action\":\"in\",\r\n    \"time\":\"202203151457\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipport_mes}}/info/battery/print",
+					"host": [
+						"{{ipport_mes}}"
+					],
+					"path": [
+						"info",
+						"battery",
+						"print"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5.10SPT-电池片进出印刷设备（2 out）",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var result = JSON.parse(responseBody);\r",
+							"var s = result.msg\r",
+							"var z = pm.globals.get(\"msg\");\r",
+							"pm.test(\"响应成功\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(z);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"procId\":\"SPT\",\r\n    \"eqpCode\":\"swys001\",\r\n    \"printCode\":\"B\",\r\n    \"waferDecimalCode\":\"{{wafer_no1}}\",\r\n    \"action\":\"out\",\r\n    \"time\":\"202203151457\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipport_mes}}/info/battery/print",
+					"host": [
+						"{{ipport_mes}}"
+					],
+					"path": [
+						"info",
+						"battery",
+						"print"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5.11SPT-电池片称重（2 after）",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var result = JSON.parse(responseBody);\r",
+							"var s = result.msg\r",
+							"var z = pm.globals.get(\"msg\");\r",
+							"pm.test(\"响应成功\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(z);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"procId\": \"SPT\",\r\n    \"eqpCode\": \"swys001\",\r\n    \"printCode\": \"B\",\r\n    \"waferDecimalCode\": \"{{wafer_no1}}\",\r\n    \"weight\": \"1.12345678\",\r\n    \"type\": \"after\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipport_mes}}/info/battery/weight",
+					"host": [
+						"{{ipport_mes}}"
+					],
+					"path": [
+						"info",
+						"battery",
+						"weight"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5.12SPT-烘干设备cassette进出（2 in）",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var result = JSON.parse(responseBody);\r",
+							"var s = result.msg\r",
+							"var z = pm.globals.get(\"msg\");\r",
+							"pm.test(\"响应成功\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(z);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"procId\": \"SPT\",\r\n    \"carrierSn\": \"{{cas_3}}\",\r\n    \"eqpCode\": \"swys001\",\r\n    \"chamberCode\": \"01\",\r\n    \"action\": \"in\",\r\n    \"qty\": \"2\",\r\n    \"waferList\": [\r\n        {\r\n            \"waferDecimalCode\": \"{{wafer_no1}}\",\r\n            \"slot\": \"1\",\r\n            \"waferRow\": \"1\"\r\n        },\r\n        {\r\n            \"waferDecimalCode\": \"{{wafer_no2}}\",\r\n            \"slot\": \"2\",\r\n            \"waferRow\": \"1\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipport_mes}}/info/dry/InOrOut",
+					"host": [
+						"{{ipport_mes}}"
+					],
+					"path": [
+						"info",
+						"dry",
+						"InOrOut"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5.13SPT-烘干设备cassette进出（2 out）",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var result = JSON.parse(responseBody);\r",
+							"var s = result.msg\r",
+							"var z = pm.globals.get(\"msg\");\r",
+							"pm.test(\"响应成功\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(z);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"procId\": \"SPT\",\r\n    \"carrierSn\": \"{{cas_3}}\",\r\n    \"eqpCode\": \"swys001\",\r\n    \"chamberCode\": \"01\",\r\n    \"action\": \"out\",\r\n    \"qty\": \"2\",\r\n    \"waferList\": [\r\n        {\r\n            \"waferDecimalCode\": \"{{wafer_no1}}\",\r\n            \"slot\": \"1\",\r\n            \"waferRow\": \"1\"\r\n        },\r\n        {\r\n            \"waferDecimalCode\": \"{{wafer_no2}}\",\r\n            \"slot\": \"2\",\r\n            \"waferRow\": \"1\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipport_mes}}/info/dry/InOrOut",
+					"host": [
+						"{{ipport_mes}}"
+					],
+					"path": [
+						"info",
+						"dry",
+						"InOrOut"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5.14SPT-电池片称重（3 in）",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var result = JSON.parse(responseBody);\r",
+							"var s = result.msg\r",
+							"var z = pm.globals.get(\"msg\");\r",
+							"pm.test(\"响应成功\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(z);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"procId\": \"SPT\",\r\n    \"eqpCode\": \"swys001\",\r\n    \"printCode\": \"C\",\r\n    \"waferDecimalCode\": \"{{wafer_patch_1}}\",\r\n    \"weight\": \"1.12345678\",\r\n    \"type\": \"before\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipport_mes}}/info/battery/weight",
+					"host": [
+						"{{ipport_mes}}"
+					],
+					"path": [
+						"info",
+						"battery",
+						"weight"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5.15SPT-电池片进出印刷设备（3 in）",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var result = JSON.parse(responseBody);\r",
+							"var s = result.msg\r",
+							"var z = pm.globals.get(\"msg\");\r",
+							"pm.test(\"响应成功\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(z);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"procId\":\"SPT\",\r\n    \"eqpCode\":\"swys001\",\r\n    \"printCode\":\"C\",\r\n    \"waferDecimalCode\":\"{{wafer_patch_1}}\",\r\n    \"action\":\"in\",\r\n    \"time\":\"202203151457\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipport_mes}}/info/battery/print",
+					"host": [
+						"{{ipport_mes}}"
+					],
+					"path": [
+						"info",
+						"battery",
+						"print"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5.16SPT-电池片进出印刷设备（3 out）",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var result = JSON.parse(responseBody);\r",
+							"var s = result.msg\r",
+							"var z = pm.globals.get(\"msg\");\r",
+							"pm.test(\"响应成功\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(z);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"procId\":\"SPT\",\r\n    \"eqpCode\":\"swys001\",\r\n    \"printCode\":\"C\",\r\n    \"waferDecimalCode\":\"{{wafer_patch_1}}\",\r\n    \"action\":\"out\",\r\n    \"time\":\"202203151457\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipport_mes}}/info/battery/print",
+					"host": [
+						"{{ipport_mes}}"
+					],
+					"path": [
+						"info",
+						"battery",
+						"print"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5.17SPT-电池片称重（3 out）",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var result = JSON.parse(responseBody);\r",
+							"var s = result.msg\r",
+							"var z = pm.globals.get(\"msg\");\r",
+							"pm.test(\"响应成功\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(z);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"procId\": \"SPT\",\r\n    \"eqpCode\": \"swys001\",\r\n    \"printCode\": \"C\",\r\n    \"waferDecimalCode\": \"{{wafer_patch_1}}\",\r\n    \"weight\": \"1.12345678\",\r\n    \"type\": \"after\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipport_mes}}/info/battery/weight",
+					"host": [
+						"{{ipport_mes}}"
+					],
+					"path": [
+						"info",
+						"battery",
+						"weight"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5.18SPT-烘干设备cassette进出（3 in）",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var result = JSON.parse(responseBody);\r",
+							"var s = result.msg\r",
+							"var z = pm.globals.get(\"msg\");\r",
+							"pm.test(\"响应成功\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(z);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"procId\": \"SPT\",\r\n    \"carrierSn\": \"{{cas_3}}\",\r\n    \"eqpCode\": \"swys001\",\r\n    \"chamberCode\": \"01\",\r\n    \"action\": \"in\",\r\n    \"qty\": \"2\",\r\n    \"waferList\": [\r\n        {\r\n            \"waferDecimalCode\": \"{{wafer_patch_1}}\",\r\n            \"slot\": \"1\",\r\n            \"waferRow\": \"1\"\r\n        },\r\n        {\r\n            \"waferDecimalCode\": \"{{wafer_patch_2}}\",\r\n            \"slot\": \"2\",\r\n            \"waferRow\": \"1\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipport_mes}}/info/dry/InOrOut",
+					"host": [
+						"{{ipport_mes}}"
+					],
+					"path": [
+						"info",
+						"dry",
+						"InOrOut"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5.19SPT-烘干设备cassette进出（3 out）",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var result = JSON.parse(responseBody);\r",
+							"var s = result.msg\r",
+							"var z = pm.globals.get(\"msg\");\r",
+							"pm.test(\"响应成功\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(z);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"procId\": \"SPT\",\r\n    \"carrierSn\": \"{{cas_3}}\",\r\n    \"eqpCode\": \"swys001\",\r\n    \"chamberCode\": \"01\",\r\n    \"action\": \"out\",\r\n    \"qty\": \"2\",\r\n    \"waferList\": [\r\n        {\r\n            \"waferDecimalCode\": \"{{wafer_patch_1}}\",\r\n            \"slot\": \"1\",\r\n            \"waferRow\": \"1\"\r\n        },\r\n        {\r\n            \"waferDecimalCode\": \"{{wafer_patch_2}}\",\r\n            \"slot\": \"2\",\r\n            \"waferRow\": \"1\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipport_mes}}/info/dry/InOrOut",
+					"host": [
+						"{{ipport_mes}}"
+					],
+					"path": [
+						"info",
+						"dry",
+						"InOrOut"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5.20SPT-电池片称重（4 in）",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var result = JSON.parse(responseBody);\r",
+							"var s = result.msg\r",
+							"var z = pm.globals.get(\"msg\");\r",
+							"pm.test(\"响应成功\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(z);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"procId\": \"SPT\",\r\n    \"eqpCode\": \"swys001\",\r\n    \"printCode\": \"D\",\r\n    \"waferDecimalCode\": \"{{wafer_patch_2}}\",\r\n    \"weight\": \"1.12345678\",\r\n    \"type\": \"before\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipport_mes}}/info/battery/weight",
+					"host": [
+						"{{ipport_mes}}"
+					],
+					"path": [
+						"info",
+						"battery",
+						"weight"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5.21SPT-电池片进出印刷设备（4 in）",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var result = JSON.parse(responseBody);\r",
+							"var s = result.msg\r",
+							"var z = pm.globals.get(\"msg\");\r",
+							"pm.test(\"响应成功\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(z);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"procId\":\"SPT\",\r\n    \"eqpCode\":\"swys001\",\r\n    \"printCode\":\"D\",\r\n    \"waferDecimalCode\":\"{{wafer_patch_2}}\",\r\n    \"action\":\"in\",\r\n    \"time\":\"202203151457\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipport_mes}}/info/battery/print",
+					"host": [
+						"{{ipport_mes}}"
+					],
+					"path": [
+						"info",
+						"battery",
+						"print"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5.22SPT-电池片进出印刷设备（4 out）",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var result = JSON.parse(responseBody);\r",
+							"var s = result.msg\r",
+							"var z = pm.globals.get(\"msg\");\r",
+							"pm.test(\"响应成功\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(z);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"procId\":\"SPT\",\r\n    \"eqpCode\":\"swys001\",\r\n    \"printCode\":\"D\",\r\n    \"waferDecimalCode\":\"{{wafer_patch_2}}\",\r\n    \"action\":\"out\",\r\n    \"time\":\"202203151457\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipport_mes}}/info/battery/print",
+					"host": [
+						"{{ipport_mes}}"
+					],
+					"path": [
+						"info",
+						"battery",
+						"print"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5.23SPT-电池片称重（4 out）",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var result = JSON.parse(responseBody);\r",
+							"var s = result.msg\r",
+							"var z = pm.globals.get(\"msg\");\r",
+							"pm.test(\"响应成功\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(z);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"procId\": \"SPT\",\r\n    \"eqpCode\": \"swys001\",\r\n    \"printCode\": \"D\",\r\n    \"waferDecimalCode\": \"{{wafer_patch_2}}\",\r\n    \"weight\": \"1.12345678\",\r\n    \"type\": \"after\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipport_mes}}/info/battery/weight",
+					"host": [
+						"{{ipport_mes}}"
+					],
+					"path": [
+						"info",
+						"battery",
+						"weight"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5.24SPT-EL检测结果上报",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var result = JSON.parse(responseBody);\r",
+							"var s = result.msg\r",
+							"var z = pm.globals.get(\"msg\");\r",
+							"pm.test(\"响应成功\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(z);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"procId\":\"SPT\",\r\n    \"eqpCode\":\"swys001\",\r\n    \"portCode\":\"1\",\r\n    \"waferDecimalCode\":\"{{wafer_patch_1}}\",\r\n    \"measurerId\":\"smztest\",\r\n    \"rank\":\"A\",\r\n    \"defectCode\":\"Q02\",\r\n    \"avgGray\":\"3.1234567\",\r\n    \"checkParameter\": {\r\n        \"name\": \"张三\",\r\n        \"job\":\"法外狂徒\"\r\n    },\r\n    \"fileUrl\":\"http://www.baicu.com\",\r\n    \"time\":\"20220317155610\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipport_mes}}/check/el",
+					"host": [
+						"{{ipport_mes}}"
+					],
+					"path": [
+						"check",
+						"el"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5.26SPT-AOI检测结果上报",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var result = JSON.parse(responseBody);\r",
+							"var s = result.msg\r",
+							"var z = pm.globals.get(\"msg\");\r",
+							"pm.test(\"响应成功\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(z);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"procId\":\"SPT\",\r\n    \"eqpCode\":\"swys001\",\r\n    \"portCode\":\"1\",\r\n    \"waferDecimalCode\":\"{{wafer_patch_1}}\",\r\n    \"measurerId\":\"smztest\",\r\n    \"direction\":\"2\",\r\n    \"rank\":\"A\",\r\n    \"defectCode\":\"Q02\",\r\n    \"checkParameter\": {\r\n        \"name\": \"张三\",\r\n        \"job\":\"法外狂徒\"\r\n    },\r\n    \"fileUrl\":\"http://www.baidu.com\",\r\n    \"time\":\"20220317152625\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipport_mes}}/check/aoi",
+					"host": [
+						"{{ipport_mes}}"
+					],
+					"path": [
+						"check",
+						"aoi"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5.27SPT-wafer踢片碎片登记接口（半片）",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var result = JSON.parse(responseBody);\r",
+							"var s = result.msg\r",
+							"var z = pm.globals.get(\"msg\");\r",
+							"pm.test(\"响应成功\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(z);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"procId\":\"SPT\",\r\n    \"eqpCode\":\"swys001\",\r\n    \"chamberCode\":\"01\",\r\n    \"waferDecimalCode\":\"{{wafer_patch_2}}\",\r\n    \"defectCode\":\"C44\",\r\n    \"type\":\"Remove\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipport_mes}}/cut/wafer/defect",
+					"host": [
+						"{{ipport_mes}}"
+					],
+					"path": [
+						"cut",
+						"wafer",
+						"defect"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5.28SPT-IV 检测结果上报接口(定时任务)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var result = JSON.parse(responseBody);\r",
+							"var s = result.msg\r",
+							"var z = pm.globals.get(\"msg\");\r",
+							"pm.test(\"响应成功\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(z);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"procId\": \"SPT\",\r\n    \"eqpCode\": \"swys001\",\r\n    \"portCode\": \"1\",\r\n    \"waferDecimalCode\": \"{{wafer_patch_1}}\",\r\n    \"measurerId\": \"smztest\",\r\n    \"eta\": \"1.1234567\",\r\n    \"voc\": \"2.1234567\",\r\n    \"isc\": \"3.1234567\",\r\n    \"ff\": \"4.1234567\",\r\n    \"rs\": \"5.1234567\",\r\n    \"jsc\": \"6.1234567\",\r\n    \"bin\": \"7.1234567\",\r\n    \"tenv\": \"8.1234567\",\r\n    \"cellParamArea\": \"9.1234567\",\r\n    \"measuredResistivity\": \"10.1234567\",\r\n    \"rshunt\": \"11.1234567\",\r\n    \"ivrev2\": \"12.1234567\",\r\n    \"etaUncorr\": \"13.1234567\",\r\n    \"ffUncorr\": \"14.1234567\",\r\n    \"opticalFrontColor\": \"15.1234567\",\r\n    \"el2Class\": \"16.1234567\",\r\n    \"checkParameter\": {\r\n        \"name\": \"张三\",\r\n        \"job\":\"法外狂徒\"\r\n    },\r\n    \"fileUrl\": \"http://www.baidu.com\",\r\n    \"time\": \"20220318103010\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipport_mes}}/check/iv",
+					"host": [
+						"{{ipport_mes}}"
+					],
+					"path": [
+						"check",
+						"iv"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5.28-2-SPT-IV 检测结果上报接口(定时任务)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var result = JSON.parse(responseBody);\r",
+							"var s = result.msg\r",
+							"var z = pm.globals.get(\"msg\");\r",
+							"pm.test(\"响应成功\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(z);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"procId\": \"SPT\",\r\n    \"eqpCode\": \"swys001\",\r\n    \"portCode\": \"1\",\r\n    \"waferDecimalCode\": \"{{wafer_patch_2}}\",\r\n    \"measurerId\": \"smztest\",\r\n    \"eta\": \"1.1234567\",\r\n    \"voc\": \"2.1234567\",\r\n    \"isc\": \"3.1234567\",\r\n    \"ff\": \"4.1234567\",\r\n    \"rs\": \"5.1234567\",\r\n    \"jsc\": \"6.1234567\",\r\n    \"bin\": \"7.1234567\",\r\n    \"tenv\": \"8.1234567\",\r\n    \"cellParamArea\": \"9.1234567\",\r\n    \"measuredResistivity\": \"10.1234567\",\r\n    \"rshunt\": \"11.1234567\",\r\n    \"ivrev2\": \"12.1234567\",\r\n    \"etaUncorr\": \"13.1234567\",\r\n    \"ffUncorr\": \"14.1234567\",\r\n    \"opticalFrontColor\": \"15.1234567\",\r\n    \"el2Class\": \"16.1234567\",\r\n    \"checkParameter\": {\r\n        \"name\": \"张三\",\r\n        \"job\":\"法外狂徒\"\r\n    },\r\n    \"fileUrl\": \"http://www.baidu.com\",\r\n    \"time\": \"20220318103010\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipport_mes}}/check/iv",
+					"host": [
+						"{{ipport_mes}}"
+					],
+					"path": [
+						"check",
+						"iv"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5.30SPT-满Bin出料接口",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var result = JSON.parse(responseBody);\r",
+							"var s = result.msg\r",
+							"var z = pm.globals.get(\"msg\");\r",
+							"pm.test(\"响应成功\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(z);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"procId\":\"SPT\",\r\n    \"eqpCode\":\"swys001\",\r\n    \"binNo\":\"smztest0322\",\r\n    \"binCode\":\"BIN0322\",\r\n    \"binNum\":\"322\",\r\n    \"waferList\":[\r\n        {\r\n            \"waferDecimalCode\":\"{{wafer_patch_1}}\",\r\n            \"slot\":\"1\",\r\n            \"waferRow\":\"1\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ipport_mes}}/info/bin/out",
+					"host": [
+						"{{ipport_mes}}"
+					],
+					"path": [
+						"info",
+						"bin",
+						"out"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

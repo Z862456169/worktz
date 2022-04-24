@@ -1,0 +1,3 @@
+action view：
+AssyLoading1CheckIn
+AssyLoading1CheckOut

@@ -1,0 +1,7 @@
+1、在设备管理器 禁用 SVNDrv.sys
+
+2、替换C:\Windows\System32\drivers下的同名文件
+
+3、在设备管理器 启用 SVNDrv.sys
+
+4、重启secoclient

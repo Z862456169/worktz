@@ -1,0 +1,72 @@
+mes自动化过账：
+--waferid长码、短码、十进制码表：MC_BASE_WAFER_INFO
+
+--获取料盒waferid：MC_BASE_WAFER_INFO，MC_CUT_WAFER_INFO
+
+--wafer信息登记：MC_CUT_EAP_WAFER_INFO， MC_EQP_INFO设备表，MC_EQUIPMENT_CHAMBER腔体表，MC_BASE_WAFER_INFOwafer信息表
+
+--上料cassette 需要拿走,操作表：MC_CARRIER_WAFER
+
+--wafer检测信息（AOI），操作表：MC_CUT_WAFER_AOI
+
+--载具信息登记，操作表：MP_EAP_CARRIER，MP_PROCESS_STEP批次站点
+
+--wafer踢片碎片登记，操作表：MC_WAFER_DEFECT,MP_PROCESS_STEP站点批次表
+
+--烘干设备 cassette 进/出,操作表：MP_EAP_DRY_CASSETTE, MP_DRY_CASSETTE_DETAIL 硅片信息列表, MP_PROCESS_STEP站点批次表
+
+--电池片称重，操作表：MP_BATTERY_WEIGHT, MP_PROCESS_STEP 批次站点
+
+--电池片进出印刷设备，操作表：MP_BATTERY_PRINT，MP_PROCESS_STEP 批次站点表
+
+--设备状态变更上报，操作表：MP_EQP_STATUS，MP_EQP_ANNOTATION 机台注释表，MP_EQP_STATUS_HISTORY
+
+--托盘 Wafer 登记(累加使用次数)，MC_MTM_CARRIER载具表，MC_MTM_CARRIER_PARAM载具参数表
+
+--托盘维保接口（重置清洗、镀膜次数），操作表：MP_TRAY_MAINTENANCE
+
+
+
+测试wafer id校验批次：
+无批次的wafer：
+wafer no：02203170111000002   02203170100000002
+十进制码：1144520706          1142947842
+
+有批次的wafer：
+wafer no：02203140100000003   02203160100000001
+十进制码：941621251           1075838977
+
+去查询wafer批次，批次站点信息
+
+
+已完工的wafer：
+02203150100000003   1008730115   批次：WO202202280001.B031
+
+
+
+
+
+02203180101000008   1210581000
+02203180100000008   1210056712
+
+02203180101000009   1210581001
+02203180100000009   1210056713
+
+验证接口自动开批、投片，生产批管理中生产批号点击和投片点击显示不一致，周一验证
+HL-s11  手动
+
+ 
+
+HL-s12 自动
+02203190101000002     1277689858
+02203190100000002     1277165570
+
+
+
+
+
+
+
+
+
+
