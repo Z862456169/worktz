@@ -1,0 +1,31 @@
+000BBKB
+
+
+0SBZTTJ     
+borrow       http://192.168.1.130:8080/webroot/decision/view/report?viewlet=emsxj/borrow.cpt
+EqpRunni   http://192.168.1.130:8080/webroot/decision/view/report?viewlet=emsxj/EqpRunningStatus.cpt
+EqpR          http://192.168.1.130:8080/webroot/decision/view/report?viewlet=emsxj/EqpRepairHistory.cpt
+maintena    http://192.168.1.130:8080/webroot/decision/view/report?viewlet=emsxj/maintenance.cpt
+
+Tooling      http://192.168.1.130:8080/webroot/decision/view/report?viewlet=emsxj/ToolingInOutHistory.cpt
+
+pr              
+
+SuccessR    http://192.168.1.130:8080/webroot/decision/view/report?viewlet=emsxj/MaintenanceSuccessRate.cpt
+
+SBTZ          http://192.168.1.130:8080/webroot/decision/view/report?viewlet=emsxj/EqpAssetStandingBook.cpt
+
+YHXMCS    http://192.168.1.130:8080/webroot/decision/view/report?viewlet=emsxj/MaintenanceContentDetail.cpt
+
+
+
+
+
+
+
+
+
+
+
+
+
