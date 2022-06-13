@@ -1,0 +1,446 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://sap.webservice.client.mes.microservice.tfinfo.cn" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="SapWebServiceImplService" targetNamespace="http://sap.webservice.client.mes.microservice.tfinfo.cn">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://sap.webservice.client.mes.microservice.tfinfo.cn" elementFormDefault="unqualified" targetNamespace="http://sap.webservice.client.mes.microservice.tfinfo.cn" version="1.0">
+
+  <xs:element name="addMO" type="tns:addMO"/>
+
+  <xs:element name="addMOResponse" type="tns:addMOResponse"/>
+
+  <xs:element name="customerBasis" type="tns:customerBasis"/>
+
+  <xs:element name="customerBasisResponse" type="tns:customerBasisResponse"/>
+
+  <xs:element name="materialConsume" type="tns:materialConsume"/>
+
+  <xs:element name="materialConsumeResponse" type="tns:materialConsumeResponse"/>
+
+  <xs:element name="materialDetail" type="tns:materialDetail"/>
+
+  <xs:element name="materialDetailResponse" type="tns:materialDetailResponse"/>
+
+  <xs:element name="materialType" type="tns:materialType"/>
+
+  <xs:element name="materialTypeResponse" type="tns:materialTypeResponse"/>
+
+  <xs:element name="moTransmitState" type="tns:moTransmitState"/>
+
+  <xs:element name="moTransmitStateResponse" type="tns:moTransmitStateResponse"/>
+
+  <xs:element name="sqdmIqa" type="tns:sqdmIqa"/>
+
+  <xs:element name="sqdmIqaResponse" type="tns:sqdmIqaResponse"/>
+
+  <xs:element name="sqdmIqaWafer" type="tns:sqdmIqaWafer"/>
+
+  <xs:element name="sqdmIqaWaferResponse" type="tns:sqdmIqaWaferResponse"/>
+
+  <xs:element name="testMethod" type="tns:testMethod"/>
+
+  <xs:element name="testMethodResponse" type="tns:testMethodResponse"/>
+
+  <xs:element name="workCenter" type="tns:workCenter"/>
+
+  <xs:element name="workCenterResponse" type="tns:workCenterResponse"/>
+
+  <xs:element name="workOrderClose" type="tns:workOrderClose"/>
+
+  <xs:element name="workOrderCloseResponse" type="tns:workOrderCloseResponse"/>
+
+  <xs:complexType name="materialConsume">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="param" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="materialConsumeResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="testMethod">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="testMethodResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="customerBasis">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="param" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="customerBasisResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="workCenter">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="param" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="workCenterResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="workOrderClose">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="param" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="workOrderCloseResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="materialDetail">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="param" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="materialDetailResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="moTransmitState">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="param" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="moTransmitStateResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="sqdmIqaWafer">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="param" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="sqdmIqaWaferResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="addMO">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="param" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="addMOResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="sqdmIqa">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="param" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="sqdmIqaResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="materialType">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="param" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="materialTypeResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="materialConsumeResponse">
+    <wsdl:part element="tns:materialConsumeResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="materialConsume">
+    <wsdl:part element="tns:materialConsume" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="workCenter">
+    <wsdl:part element="tns:workCenter" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="workOrderCloseResponse">
+    <wsdl:part element="tns:workOrderCloseResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="workOrderClose">
+    <wsdl:part element="tns:workOrderClose" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="materialDetail">
+    <wsdl:part element="tns:materialDetail" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="materialTypeResponse">
+    <wsdl:part element="tns:materialTypeResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addMOResponse">
+    <wsdl:part element="tns:addMOResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addMO">
+    <wsdl:part element="tns:addMO" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sqdmIqa">
+    <wsdl:part element="tns:sqdmIqa" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="materialType">
+    <wsdl:part element="tns:materialType" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="materialDetailResponse">
+    <wsdl:part element="tns:materialDetailResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="testMethod">
+    <wsdl:part element="tns:testMethod" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="customerBasis">
+    <wsdl:part element="tns:customerBasis" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sqdmIqaResponse">
+    <wsdl:part element="tns:sqdmIqaResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="workCenterResponse">
+    <wsdl:part element="tns:workCenterResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="moTransmitStateResponse">
+    <wsdl:part element="tns:moTransmitStateResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="customerBasisResponse">
+    <wsdl:part element="tns:customerBasisResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="moTransmitState">
+    <wsdl:part element="tns:moTransmitState" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sqdmIqaWafer">
+    <wsdl:part element="tns:sqdmIqaWafer" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="testMethodResponse">
+    <wsdl:part element="tns:testMethodResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sqdmIqaWaferResponse">
+    <wsdl:part element="tns:sqdmIqaWaferResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="SapWebService">
+    <wsdl:operation name="materialConsume">
+      <wsdl:input message="tns:materialConsume" name="materialConsume">
+    </wsdl:input>
+      <wsdl:output message="tns:materialConsumeResponse" name="materialConsumeResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="testMethod">
+      <wsdl:input message="tns:testMethod" name="testMethod">
+    </wsdl:input>
+      <wsdl:output message="tns:testMethodResponse" name="testMethodResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="customerBasis">
+      <wsdl:input message="tns:customerBasis" name="customerBasis">
+    </wsdl:input>
+      <wsdl:output message="tns:customerBasisResponse" name="customerBasisResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="workCenter">
+      <wsdl:input message="tns:workCenter" name="workCenter">
+    </wsdl:input>
+      <wsdl:output message="tns:workCenterResponse" name="workCenterResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="workOrderClose">
+      <wsdl:input message="tns:workOrderClose" name="workOrderClose">
+    </wsdl:input>
+      <wsdl:output message="tns:workOrderCloseResponse" name="workOrderCloseResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="materialDetail">
+      <wsdl:input message="tns:materialDetail" name="materialDetail">
+    </wsdl:input>
+      <wsdl:output message="tns:materialDetailResponse" name="materialDetailResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="moTransmitState">
+      <wsdl:input message="tns:moTransmitState" name="moTransmitState">
+    </wsdl:input>
+      <wsdl:output message="tns:moTransmitStateResponse" name="moTransmitStateResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sqdmIqaWafer">
+      <wsdl:input message="tns:sqdmIqaWafer" name="sqdmIqaWafer">
+    </wsdl:input>
+      <wsdl:output message="tns:sqdmIqaWaferResponse" name="sqdmIqaWaferResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addMO">
+      <wsdl:input message="tns:addMO" name="addMO">
+    </wsdl:input>
+      <wsdl:output message="tns:addMOResponse" name="addMOResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sqdmIqa">
+      <wsdl:input message="tns:sqdmIqa" name="sqdmIqa">
+    </wsdl:input>
+      <wsdl:output message="tns:sqdmIqaResponse" name="sqdmIqaResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="materialType">
+      <wsdl:input message="tns:materialType" name="materialType">
+    </wsdl:input>
+      <wsdl:output message="tns:materialTypeResponse" name="materialTypeResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SapWebServiceImplServiceSoapBinding" type="tns:SapWebService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="materialConsume">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="materialConsume">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="materialConsumeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="testMethod">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="testMethod">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="testMethodResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="customerBasis">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="customerBasis">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="customerBasisResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="workCenter">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="workCenter">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="workCenterResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="workOrderClose">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="workOrderClose">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="workOrderCloseResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="materialDetail">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="materialDetail">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="materialDetailResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="moTransmitState">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="moTransmitState">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="moTransmitStateResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sqdmIqaWafer">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="sqdmIqaWafer">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="sqdmIqaWaferResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addMO">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="addMO">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addMOResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sqdmIqa">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="sqdmIqa">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="sqdmIqaResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="materialType">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="materialType">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="materialTypeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SapWebServiceImplService">
+    <wsdl:port binding="tns:SapWebServiceImplServiceSoapBinding" name="SapWebServicePort">
+      <soap:address location="http://192.168.233.32:9369/webservice/api"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

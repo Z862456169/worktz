@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+　　<soap:Body>
+　　　　<materialType xmlns="http://sap.webservice.client.mes.microservice.tfinfo.cn">
+　　　　　　<param>{"REQUEST":{"IDENTITY":{"TRANSACTIONID":"2008080508255010","MODULEID":"TP","FUNCTIONID":"SI","COMPUTERNAME":"ERP","CURUSERNO":"TP","SENDTIME":"2008/08/05 23:06:00"},"I_INPUT":[{"MATKL":"C0126","WGBEZ":"晶圆-6吋石英玻璃","DESCRIPTION":"","ISSUESTATE":"2","CREATOR":"DS","CREATEDATE":"20220420","ZYL01":"","ZYL02":"","ZYL03":"","ZYL04":"","ZYL05":""},{"MATKL":"C0228","WGBEZ":"二氧化碳","DESCRIPTION":"","ISSUESTATE":"2","CREATOR":"DS","CREATEDATE":"20220420","ZYL01":"","ZYL02":"","ZYL03":"","ZYL04":"","ZYL05":""}]}}</param>
+　　　　</materialType>
+　　</soap:Body>
+</soap:Envelope>

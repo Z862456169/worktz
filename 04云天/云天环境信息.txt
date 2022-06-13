@@ -1,0 +1,83 @@
+IP：192.168.1.150和192.168.1.155
+用户名：root
+密码：123456150和123456155
+目录：/usr/local/mes
+执行./rmv.sh
+上传mes.jar
+执行./mes.sh
+
+演示环境
+IP:192.168.1.153
+用户名：root
+密码：123456
+目录：/usr/local/mes
+执行./rmv.sh
+上传mes.jar
+执行./mes.sh
+
+
+
+IP：192.168.233.32
+用户名：root
+密码：Mes123..
+目录：/usr/local/mes
+mv mes.jar mes.jar1202
+上传mes.jar
+执行./mes.sh
+
+
+IP：192.168.233.50和192.168.233.51
+用户名：root
+密码：Mes0320!#%
+目录：/usr/local/mes
+mv mes.jar mes.jar1209
+上传mes.jar
+执行./mes.sh
+
+
+mv mes.jar mes.jar220209
+mv ems.jar ems.jar220209
+mv bi.jar bi.jar20220117
+mv bi-konka.jar bi-konka.jar20220124
+
+mv mes-basic-akcome.jar mes-basic-akcome.jar021613
+
+mv eai.jar bi.jar20220125
+
+
+从50复制到51
+
+scp -r root@192.168.233.50:/usr/local/mes/mes.jar /usr/local/mes/mes.jar
+
+scp -r root@192.168.233.50:/usr/local/bi/bi.jar /usr/local/bi/bi.jar
+
+scp -r root@192.168.233.50:/usr/local/eai.jar /usr/local/eai.jar
+
+
+33是test
+53是test->prod_bak
+
+
+select b.owner,b.object_name,l.session_id,l.locked_mode from v$locked_object l, dba_objects b where b.object_id=l.object_id
+				 
+				 
+				  select t2.username,t2.sid,t2.serial#,t2.logon_time from v$locked_object t1,v$session t2 where t1.session_id=t2.sid order by t2.logon_time;
+				 
+				 alter system kill SESSION '4095,2241'
+				 
+
+nohup java -jar  -Dspring.profiles.active=prod -Dserver.addr=192.168.233.51:8847,192.168.233.53:8847,192.168.233.54:8847 ems.jar >/dev/null 2>&1 &
+
+nohup java -jar  -Dspring.profiles.active=dev -Dserver.addr=192.168.1.127:8848 eap-server.jar >/dev/null 2>&1 &
+
+
+nohup java -jar -Dspring.profiles.active=prod -Dserver.addr=192.168.233.51:8847,192.168.233.53:8847,192.168.233.54:8847 eai.jar >/dev/null 2>&1 &
+
+-Dip.address=192.168.233.50 -Dmac.address=test -Djob.key=null -jar /eai.jar
+
+				 
+java -jar -Dspring.profiles.active=prod -Dserver.addr=192.168.233.53:8847 -Dfile.encoding=utf-8 ems.jar
+
+
+
+\\Desktop-j3t5309\开发文档\相关规范

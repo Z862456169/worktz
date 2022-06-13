@@ -1,0 +1,287 @@
+--区域号
+select linenumber from MES_CIM_EQP_AREA where eqpname = ''
+--设备基础信息
+select * from BASE_EQPDATA
+--设备实时状态
+select * from FW_EQP_STATE
+--根据设备类型查找uph
+select * from IC_UPH_T_BIGDATA where eqp = BASE_EQPDATA.MODEL
+
+
+
+
+正在生产，正在使用
+
+select
+    distinct
+    lot.pid,
+    a.bd,
+    a.eqpname eqpCode,
+    b.model eqpModel,
+    c.plant,
+    c.uph,
+    c.step,
+    d.remark eqpRemark,
+    d.areanumber newArea,
+    d.linenumber lineNo
+from
+    FW_EQP_STATE a
+inner join
+    fw_aolot lot
+on
+    a.lotid = lot.aolot
+inner join
+    BASE_EQPDATA b
+on
+    a.eqpname = b.eqpid
+inner join
+    IC_UPH_T_BIGDATA c
+on
+    c.eqp = b.model
+and
+    c.device = lot.pid
+inner join
+    MES_CIM_EQP_AREA d
+on
+    a.eqpname = d.eqpname
+where
+    lot.pid in
+    <foreach collection="list" item="pid" open="(" separator="," close=")">
+        #{pid}
+    </foreach>
+and
+    d.flag = '0'
+and
+    c.plant = #{plant}
+and
+    a.plant = #{shortPlant}
+and
+    c.step like '%' || #{step} || '_Step'
+	
+	
+	
+
+
+select a.eqpname eqpCode,
+       a.specialmachine,
+       c.device pid,
+       b.model eqpModel,
+       c.plant,
+       c.uph,
+       c.step,
+       d.remark eqpRemark,
+       d.areanumber     newArea,
+       d.linenumber     lineNo
+from (select eqpname, specialmachine
+      from MES_CIM_EQP_AREA
+      where specialmachine is null
+        and flag = '0'
+      union
+      select eqpname, specialmachine
+      from MES_CIM_EQP_AREA
+      where specialmachine like '%' || #{custCode} || '%'
+   and flag = '0') a
+inner join
+    base_eqpdata b
+on
+    a.eqpname = b.eqpid
+inner join
+    IC_UPH_T_BIGDATA c
+on
+    b.model = c.eqp
+inner join
+    MES_CIM_EQP_AREA d
+on
+    d.eqpname = b.eqpid
+where
+      b.step = 'WireBond'
+  and
+      c.device = #{pid}
+  and
+      b.subplant = #{plant}
+  and
+      c.plant = #{plant}
+  and
+    c.step like '%' || #{step} || '_Step'
+	
+	
+	
+select distinct id,
+                custCode,
+                plant,
+                pid,
+                bd,
+                step,
+                sumEqpQty,
+                specCount,
+                planOutQty
+from (select a.id,
+             a.cuscode custCode,
+             a.plant,
+             a.pid,
+             a.bd,
+             a.step,
+             b.sumeqpqty sumEqpQty,
+             b.sumplanqty planOutQty,
+             case
+                 when c.specialmachine is null then
+                     0
+                 else
+                     1
+                 end as  specCount
+            from
+                aps_plan_parent a
+            inner join
+                aps_plan_parent_detail b
+            on
+                a.id = b.fromid
+            left join
+                MES_CIM_EQP_AREA c
+            on
+                c.specialmachine like '%' || a.cuscode || '%'
+            and
+                c.flag = '0'
+            where
+                trunc(a.create_date) = trunc(sysdate)
+            <if test="null != plant and plant != ''">
+                and
+                    a.plant = #{plant}
+            </if>
+            <if test="null != step and step != ''">
+                and
+                    a.step = #{step}
+            </if>
+
+     )
+order by plant desc,specCount desc
+
+
+
+
+
+查看计划排机数：sumEqpQty
+select distinct
+                custCode,
+                plant,
+                pid,
+                bd,
+                step,
+                sumEqpQty,
+                specCount,
+                planOutQty
+from (select
+             a.cuscode custCode,
+             a.plant,
+             a.pid,
+             a.bd,
+             a.step,
+             b.sumeqpqty sumEqpQty,
+             b.sumplanqty planOutQty,
+             case
+                 when c.specialmachine is null then
+                     0
+                 else
+                     1
+                 end as  specCount
+            from
+                aps_plan_parent a
+            inner join
+                aps_plan_parent_detail b
+            on
+                a.id = b.fromid
+            left join
+                MES_CIM_EQP_AREA c
+            on
+                c.specialmachine like '%' || a.cuscode || '%'
+            and
+                c.flag = '0'
+            where
+                trunc(a.create_date) = trunc(sysdate)
+            <if test="null != plant and plant != ''">
+                and
+                    a.plant = #{plant}
+            </if>
+            <if test="null != step and step != ''">
+                and
+                    a.step = #{step}
+            </if>
+
+     )
+order by plant desc,specCount desc
+
+
+
+--按厂别、站点查询机台
+select a.eqpname eqpCode,
+       a.specialmachine,
+       c.device pid,
+       b.model eqpModel,
+       c.plant,
+       c.uph,
+       c.step,
+       d.remark eqpRemark,
+       d.areanumber     newArea,
+       d.linenumber     lineNo
+from (select eqpname, specialmachine
+      from MES_CIM_EQP_AREA
+      where specialmachine is null
+        and flag = '0'
+      union
+      select eqpname, specialmachine
+      from MES_CIM_EQP_AREA
+      where specialmachine like '%' || #{custCode} || '%'
+   and flag = '0') a
+inner join
+    base_eqpdata b
+on
+    a.eqpname = b.eqpid
+inner join
+    IC_UPH_T_BIGDATA c
+on
+    b.model = c.eqp
+inner join
+    MES_CIM_EQP_AREA d
+on
+    d.eqpname = b.eqpid
+where
+      b.step = 'WireBond'
+  and
+      c.device = #{pid}
+  and
+      b.subplant = #{plant}
+  and
+      c.plant = #{plant}
+  and
+    c.step like '%' || #{step} || '_Step'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
