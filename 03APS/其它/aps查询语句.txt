@@ -256,6 +256,43 @@ where
 
 
 
+--按pid导出顺序
+select b.id,
+       a.pid,
+       b.new_machine           newMachine,
+       b.eqp_remark            eqpRemark,
+       b.new_line              newLine,
+       a.bd,
+       a.production_ct         productionCt,
+       a.cust_code             custCode,
+       a.step_name             stepName,
+       a.db_wip                dbWip,
+       a.wb_wip                wbWip,
+       a.db_wb_wip             dbWbWip,
+       a.plan_sort_qty         planSortQty,
+       a.actual_sort_qty       actualSortQty,
+       a.total_uph             totalUph,
+       a.plan_output           planOutput,
+       a.package_type          packageType,
+       a.upd,
+       a.package_categories    packageCategories,
+       a.wire_type             wireType,
+       b.new_area              newArea,
+       b.shift_supervisor_area shiftSupervisorArea,
+       b.eqp_model             eqpModel,
+       b.uph,
+       b.use_ratio             useRatio,
+       b.plan_output           eqpPlanOutput,
+       b.upd                   eqpUpd
+  from aps_wb_sort c
+  left join aps_sort_product a
+    on c.id = a.parent_id
+  left join aps_sort_eqp b
+    on a.id = b.parent_id
+ where c.id = '85c7a347d1164a30a8574e43e04723ef'
+   and a.del_flag = '0'
+   and b.del_flag = '0'
+ order by a.pid asc, b.new_machine desc
 
 
 
