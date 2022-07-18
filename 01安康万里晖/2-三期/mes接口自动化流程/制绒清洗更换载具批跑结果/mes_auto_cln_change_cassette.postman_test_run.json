@@ -1,0 +1,458 @@
+{
+	"id": "fd0fc2b8-86ea-49a6-8c1c-4a35813c8732",
+	"name": "mes_auto_cln_change_cassette",
+	"timestamp": "2022-07-11T10:08:37.562Z",
+	"collection_id": "19990221-a5d49dc0-1b04-4179-9f31-012155e9beb7",
+	"folder_id": 0,
+	"environment_id": "0",
+	"totalPass": 15,
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "7a8ca000-701c-4b7a-b6c0-b4f104426316",
+			"name": "1.1切片-获取料盒 WaferID",
+			"url": "http://192.168.30.139:9084/cut/wafer/getWaferIdList",
+			"time": 135,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"响应成功": true
+			},
+			"testPassFailCounts": {
+				"响应成功": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				135
+			],
+			"allTests": [
+				{
+					"响应成功": true
+				}
+			]
+		},
+		{
+			"id": "0e2177ba-13d8-4073-8616-be1803cdf459",
+			"name": "1.8切片-切片出 cassette",
+			"url": "http://192.168.30.139:9084/cut/wafer/confirmCut",
+			"time": 249,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"响应成功": true
+			},
+			"testPassFailCounts": {
+				"响应成功": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				249
+			],
+			"allTests": [
+				{
+					"响应成功": true
+				}
+			]
+		},
+		{
+			"id": "25bc697c-181f-48da-8093-665f73c0e282",
+			"name": "2.1制绒-上下机（上机）",
+			"url": "http://192.168.30.139:9084/track/checkInOrOut",
+			"time": 598,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"响应成功": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"响应成功": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				598
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"响应成功": true
+				}
+			]
+		},
+		{
+			"id": "84e3a55a-2e3d-44b2-ac7b-5661c6e189b2",
+			"name": "2.2制绒-更换花篮",
+			"url": "http://192.168.30.139:9084/track/replaceCarrier",
+			"time": 225,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"响应成功": true
+			},
+			"testPassFailCounts": {
+				"响应成功": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				225
+			],
+			"allTests": [
+				{
+					"响应成功": true
+				}
+			]
+		},
+		{
+			"id": "8a11cafb-b16b-42cf-8ebc-7f7bed69988e",
+			"name": "2.3制绒-载具称重(cassette)（in）",
+			"url": "http://192.168.30.139:9084/track/carrier/weight",
+			"time": 67,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"响应成功": true
+			},
+			"testPassFailCounts": {
+				"响应成功": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				67
+			],
+			"allTests": [
+				{
+					"响应成功": true
+				}
+			]
+		},
+		{
+			"id": "0454a579-af47-4fac-9634-8306429a0677",
+			"name": "2.4制绒-载具信息登记（cassette）（in）",
+			"url": "http://192.168.30.139:9084/info/carrier",
+			"time": 87,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"响应成功": true
+			},
+			"testPassFailCounts": {
+				"响应成功": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				87
+			],
+			"allTests": [
+				{
+					"响应成功": true
+				}
+			]
+		},
+		{
+			"id": "bc57d4cf-0d5b-4c92-bb43-f356ff4a08dc",
+			"name": "2.5制绒-载具信息登记（cassette）（out）",
+			"url": "http://192.168.30.139:9084/info/carrier",
+			"time": 109,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"响应成功": true
+			},
+			"testPassFailCounts": {
+				"响应成功": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				109
+			],
+			"allTests": [
+				{
+					"响应成功": true
+				}
+			]
+		},
+		{
+			"id": "e32ce7f9-a583-4edb-8ef2-1877b51e90cc",
+			"name": "2.6制绒-载具称重（cassette）（out）",
+			"url": "http://192.168.30.139:9084/track/carrier/weight",
+			"time": 59,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"响应成功": true
+			},
+			"testPassFailCounts": {
+				"响应成功": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				59
+			],
+			"allTests": [
+				{
+					"响应成功": true
+				}
+			]
+		},
+		{
+			"id": "2c50934d-d235-4ac5-809f-8fa60c5b861c",
+			"name": "2.6制绒-上下机（下机）",
+			"url": "http://192.168.30.139:9084/track/checkInOrOut",
+			"time": 188,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"响应成功": true
+			},
+			"testPassFailCounts": {
+				"响应成功": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				188
+			],
+			"allTests": [
+				{
+					"响应成功": true
+				}
+			]
+		},
+		{
+			"id": "f4293229-51d3-48e4-9752-bc0da83141dc",
+			"name": "3.1CVD-上下机（上机）",
+			"url": "http://192.168.30.139:9084/track/checkInOrOut",
+			"time": 283,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"响应成功": true
+			},
+			"testPassFailCounts": {
+				"响应成功": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				283
+			],
+			"allTests": [
+				{
+					"响应成功": true
+				}
+			]
+		},
+		{
+			"id": "59e22564-8cd2-4c79-ad8a-5227787e9223",
+			"name": "3.14CVD-上下机（下机）",
+			"url": "http://192.168.30.139:9084/track/checkInOrOut",
+			"time": 225,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"响应成功": true
+			},
+			"testPassFailCounts": {
+				"响应成功": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				225
+			],
+			"allTests": [
+				{
+					"响应成功": true
+				}
+			]
+		},
+		{
+			"id": "cd286b6b-e7d4-4041-801b-08873bd0476b",
+			"name": "4.1PVD-上下机（上机）",
+			"url": "http://192.168.30.139:9084/track/checkInOrOut",
+			"time": 312,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"响应成功": true
+			},
+			"testPassFailCounts": {
+				"响应成功": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				312
+			],
+			"allTests": [
+				{
+					"响应成功": true
+				}
+			]
+		},
+		{
+			"id": "34e21734-0283-419d-8fda-e28bea523dd9",
+			"name": "4.15PVD-上下机（下机）",
+			"url": "http://192.168.30.139:9084/track/checkInOrOut",
+			"time": 330,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"响应成功": true
+			},
+			"testPassFailCounts": {
+				"响应成功": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				330
+			],
+			"allTests": [
+				{
+					"响应成功": true
+				}
+			]
+		},
+		{
+			"id": "f9b19d1a-8215-4307-87a0-6c30c492e776",
+			"name": "5.1SPT-上下机（上机）",
+			"url": "http://192.168.30.139:9084/track/checkInOrOut",
+			"time": 237,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"响应成功": true
+			},
+			"testPassFailCounts": {
+				"响应成功": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				237
+			],
+			"allTests": [
+				{
+					"响应成功": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 3104,
+	"collection": {
+		"requests": [
+			{
+				"id": "7a8ca000-701c-4b7a-b6c0-b4f104426316",
+				"method": "GET"
+			},
+			{
+				"id": "0e2177ba-13d8-4073-8616-be1803cdf459",
+				"method": "POST"
+			},
+			{
+				"id": "25bc697c-181f-48da-8093-665f73c0e282",
+				"method": "POST"
+			},
+			{
+				"id": "84e3a55a-2e3d-44b2-ac7b-5661c6e189b2",
+				"method": "POST"
+			},
+			{
+				"id": "8a11cafb-b16b-42cf-8ebc-7f7bed69988e",
+				"method": "POST"
+			},
+			{
+				"id": "0454a579-af47-4fac-9634-8306429a0677",
+				"method": "POST"
+			},
+			{
+				"id": "bc57d4cf-0d5b-4c92-bb43-f356ff4a08dc",
+				"method": "POST"
+			},
+			{
+				"id": "e32ce7f9-a583-4edb-8ef2-1877b51e90cc",
+				"method": "POST"
+			},
+			{
+				"id": "2c50934d-d235-4ac5-809f-8fa60c5b861c",
+				"method": "POST"
+			},
+			{
+				"id": "f4293229-51d3-48e4-9752-bc0da83141dc",
+				"method": "POST"
+			},
+			{
+				"id": "59e22564-8cd2-4c79-ad8a-5227787e9223",
+				"method": "POST"
+			},
+			{
+				"id": "cd286b6b-e7d4-4041-801b-08873bd0476b",
+				"method": "POST"
+			},
+			{
+				"id": "34e21734-0283-419d-8fda-e28bea523dd9",
+				"method": "POST"
+			},
+			{
+				"id": "f9b19d1a-8215-4307-87a0-6c30c492e776",
+				"method": "POST"
+			}
+		]
+	}
+}

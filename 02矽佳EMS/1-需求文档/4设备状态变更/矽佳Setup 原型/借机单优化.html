@@ -1,0 +1,157 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <title>借机单优化</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <link href="resources/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
+    <link href="data/styles.css" type="text/css" rel="stylesheet"/>
+    <link href="files/借机单优化/styles.css" type="text/css" rel="stylesheet"/>
+    <script src="resources/scripts/jquery-3.2.1.min.js"></script>
+    <script src="resources/scripts/axure/axQuery.js"></script>
+    <script src="resources/scripts/axure/globals.js"></script>
+    <script src="resources/scripts/axutils.js"></script>
+    <script src="resources/scripts/axure/annotation.js"></script>
+    <script src="resources/scripts/axure/axQuery.std.js"></script>
+    <script src="resources/scripts/axure/doc.js"></script>
+    <script src="resources/scripts/messagecenter.js"></script>
+    <script src="resources/scripts/axure/events.js"></script>
+    <script src="resources/scripts/axure/recording.js"></script>
+    <script src="resources/scripts/axure/action.js"></script>
+    <script src="resources/scripts/axure/expr.js"></script>
+    <script src="resources/scripts/axure/geometry.js"></script>
+    <script src="resources/scripts/axure/flyout.js"></script>
+    <script src="resources/scripts/axure/model.js"></script>
+    <script src="resources/scripts/axure/repeater.js"></script>
+    <script src="resources/scripts/axure/sto.js"></script>
+    <script src="resources/scripts/axure/utils.temp.js"></script>
+    <script src="resources/scripts/axure/variables.js"></script>
+    <script src="resources/scripts/axure/drag.js"></script>
+    <script src="resources/scripts/axure/move.js"></script>
+    <script src="resources/scripts/axure/visibility.js"></script>
+    <script src="resources/scripts/axure/style.js"></script>
+    <script src="resources/scripts/axure/adaptive.js"></script>
+    <script src="resources/scripts/axure/tree.js"></script>
+    <script src="resources/scripts/axure/init.temp.js"></script>
+    <script src="resources/scripts/axure/legacy.js"></script>
+    <script src="resources/scripts/axure/viewer.js"></script>
+    <script src="resources/scripts/axure/math.js"></script>
+    <script src="resources/scripts/axure/jquery.nicescroll.min.js"></script>
+    <script src="data/document.js"></script>
+    <script src="files/借机单优化/data.js"></script>
+    <script type="text/javascript">
+      $axure.utils.getTransparentGifPath = function() { return 'resources/images/transparent.gif'; };
+      $axure.utils.getOtherPath = function() { return 'resources/Other.html'; };
+      $axure.utils.getReloadPath = function() { return 'resources/reload.html'; };
+    </script>
+  </head>
+  <body>
+    <div id="base" class="">
+
+      <!-- Unnamed (Image) -->
+      <div id="u666" class="ax_default _图片_">
+        <img id="u666_img" class="img " src="images/借机单优化/u666.png"/>
+        <div id="u666_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u667" class="ax_default box_1">
+        <div id="u667_div" class=""></div>
+        <div id="u667_text" class="text ">
+          <p><span>1.&nbsp; 发起借机， 新增选择的设备时增加筛选主状态=待ENG状态；&nbsp; </span></p><p><span><br></span></p><p><span>2.&nbsp; 发起借机审核通过后， 将机台对应的主状态自动变更为 ENG状态并记录机台状态变更历史（含时间、人员信息）；</span></p><p><span><br></span></p><p><span>3.&nbsp; 借机确认时：<br>&nbsp; &nbsp;&nbsp; 3.1 增加主状态，只读，带出设备当前的主状态（即ENG状态）；</span></p><p><span>&nbsp;&nbsp; &nbsp; 3.2 增加子状态， 必录， 可改， 选择对应主状态下的子状态；</span></p><p><span>&nbsp;&nbsp; &nbsp; 3.3 更改对应设备的子状态并 记录机台状态变更历史（含时间、人员信息）；</span></p><p><span><br></span></p><p><span>4.&nbsp; 归还确认时： </span></p><p><span>&nbsp;&nbsp; &nbsp; 4.1 增加主状态，必录，可改，&nbsp; 带出设备分类对应的主状态清单， 排除当前的设备状态（ENG）</span></p><p><span>&nbsp;&nbsp; &nbsp; 4.2 增加子状态， 必录， 可改， 选择对应主状态下的子状态；</span></p><p><span>&nbsp;&nbsp; &nbsp; 4.3 更改对应设备对应的主状态和子状态并记录机台状态变更历史（含时间、人员信息）；</span></p><p><span><br></span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Group) -->
+      <div id="u668" class="ax_default" data-left="1183" data-top="479" data-width="200" data-height="91">
+
+        <!-- Unnamed (Table) -->
+        <div id="u669" class="ax_default">
+
+          <!-- Unnamed (Table Cell) -->
+          <div id="u670" class="ax_default table_cell">
+            <img id="u670_img" class="img " src="images/__tooling__/u10.png"/>
+            <div id="u670_text" class="text ">
+              <p><span style="color:#D9001B;">*</span><span>主状态</span></p>
+            </div>
+          </div>
+
+          <!-- Unnamed (Table Cell) -->
+          <div id="u671" class="ax_default table_cell">
+            <img id="u671_img" class="img " src="images/新增/u101.png"/>
+            <div id="u671_text" class="text ">
+              <p><span style="color:#D9001B;">*</span><span>子状态</span></p>
+            </div>
+          </div>
+
+          <!-- Unnamed (Table Cell) -->
+          <div id="u672" class="ax_default table_cell">
+            <img id="u672_img" class="img " src="images/__tooling__/u10.png"/>
+            <div id="u672_text" class="text ">
+              <p><span>ENG</span></p>
+            </div>
+          </div>
+
+          <!-- Unnamed (Table Cell) -->
+          <div id="u673" class="ax_default table_cell">
+            <img id="u673_img" class="img " src="images/新增/u101.png"/>
+            <div id="u673_text" class="text " style="display:none; visibility: hidden">
+              <p></p>
+            </div>
+          </div>
+
+          <!-- Unnamed (Table Cell) -->
+          <div id="u674" class="ax_default table_cell">
+            <img id="u674_img" class="img " src="images/__tooling__/u46.png"/>
+            <div id="u674_text" class="text ">
+              <p><span>ENG</span></p>
+            </div>
+          </div>
+
+          <!-- Unnamed (Table Cell) -->
+          <div id="u675" class="ax_default table_cell">
+            <img id="u675_img" class="img " src="images/新增/u113.png"/>
+            <div id="u675_text" class="text " style="display:none; visibility: hidden">
+              <p></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Unnamed (Droplist) -->
+        <div id="u676" class="ax_default droplist">
+          <div id="u676_div" class=""></div>
+          <select id="u676_input" class="u676_input">
+          </select>
+        </div>
+
+        <!-- Unnamed (Droplist) -->
+        <div id="u677" class="ax_default droplist">
+          <div id="u677_div" class=""></div>
+          <select id="u677_input" class="u677_input">
+            <option class="u677_input_option" value="ENG">ENG</option>
+            <option class="u677_input_option" value="RUN">RUN</option>
+          </select>
+        </div>
+
+        <!-- Unnamed (Droplist) -->
+        <div id="u678" class="ax_default droplist">
+          <div id="u678_div" class=""></div>
+          <select id="u678_input" class="u678_input">
+            <option class="u678_input_option" value="ENG">ENG</option>
+            <option class="u678_input_option" value="RUN">RUN</option>
+          </select>
+        </div>
+
+        <!-- Unnamed (Droplist) -->
+        <div id="u679" class="ax_default droplist">
+          <div id="u679_div" class=""></div>
+          <select id="u679_input" class="u679_input">
+          </select>
+        </div>
+      </div>
+    </div>
+    <script src="resources/scripts/axure/ios.js"></script>
+  </body>
+</html>
